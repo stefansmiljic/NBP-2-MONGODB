@@ -30,8 +30,8 @@ public class ProizvodiController : ControllerBase
         return proizvod;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Post(Proizvod newProizvod)
+    [HttpPost("PostProduct")]
+    public async Task<IActionResult> PostProduct(Proizvod newProizvod)
     {
         await _proizvodiService.CreateAsync(newProizvod);
 
