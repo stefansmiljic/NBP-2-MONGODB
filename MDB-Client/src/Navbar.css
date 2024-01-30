@@ -1,0 +1,113 @@
+.navbarList {
+    list-style: none inside;
+    margin: 0;
+    padding: 0;
+    margin-right: 200px;
+    text-align: center;
+    width: 100vw;
+  }
+  
+  .navbarList li {
+    float: right;
+    height: 75px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .navbarList li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    width: 150px;
+    text-transform: uppercase;
+  }
+  
+  .dropdown {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #08b32d;
+    width: 110px;
+  }
+  
+  .navbarList li:hover > ul,
+  .navbar li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    transition-duration: 500ms;
+  }
+  
+  .navbarList li ul li, 
+  .navbarList li ul li a {
+    clear: both;
+    width: 150px;
+    height: 50px;
+    background-image: linear-gradient(45deg, #0a571b, #ffffff00);
+    box-shadow: 0px 0px 10px #91ffa9a6;
+  }
+  
+  .navbarList li ul li a:hover {
+    background-color: #31ec5a;
+    transition-duration: 200ms;
+  }
+  
+  .navbarList li ul {
+    list-style: none;
+  }
+  
+  .navbar {
+    background-image: linear-gradient(30deg, #0f8a2a, #08b32d ,#0b7221);
+    background-color: #08b32d;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 10px #00000080;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+  }
+  
+  .menuIcon {
+    display: flex;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  
+  
+  .userPhoto {
+    height: 50px;
+    width: 50px;
+    border-radius: 200px;
+    background-color: white;
+    box-shadow: 0px 0px 10px #91ffa9;
+  }
+  
+  .photoLi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+  }
+  
+  .mdbLogo {
+    color: white;
+    height: 50px;
+    width: fit-content;
+  }
+
+  .logoRef {
+    margin-left: 200px;
+    margin-top: 5px;
+  }
+  
+  .menuItem:hover {
+    background-image: linear-gradient(45deg, #0a571b, #ffffff00);
+    box-shadow: 0px 0px 20px #91ffa9;
+    transition-duration: 500ms;
+  }

@@ -9,6 +9,7 @@ obj/
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
+/MDB-Client/node_modules
 
 ### react ###
 .DS_*

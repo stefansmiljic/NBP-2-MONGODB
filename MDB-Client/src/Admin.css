@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&display=swap');
+
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.kreirajProizvod {
+    margin-top: 25px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+    border: 1px solid #37af33;
+    border-radius: 20px;
+}
+
+.kreirajProizvod h1 {
+    color: #37af33;
+    font-size: 25px;
+}
+
+.kreirajProizvod input[type='text'], input[type='url'], input[type='number'], input[type='button']  {
+    border: 2px solid #37af33;
+    color: #383838;
+    border-radius: 15px;
+    height: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+}
+
+.kreirajProizvod input[type='button'] {
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.kreirajProizvod input[type='button']:hover {
+    background-color: #37af33;
+    color: white;
+    transition: 0.15s;
+}
+
+.kreirajProizvod input[type='text']:hover, input[type='url']:hover, input[type='number']:hover {
+}
+
+.selectTip {
+    text-align: center;
+}
