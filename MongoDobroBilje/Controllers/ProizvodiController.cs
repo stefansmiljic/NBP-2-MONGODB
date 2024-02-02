@@ -31,7 +31,7 @@ public class ProizvodiController : ControllerBase
     }
 
     [HttpPost("PostProduct")]
-    public async Task<IActionResult> PostProduct(Proizvod newProizvod)
+    public async Task<IActionResult> Post(Proizvod newProizvod)
     {
         await _proizvodiService.CreateAsync(newProizvod);
 

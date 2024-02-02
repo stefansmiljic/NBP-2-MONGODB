@@ -8,6 +8,7 @@ builder.Services.Configure<ProdavnicaDatabaseSettings>(
     builder.Configuration.GetSection("ProdavnicaDatabase"));
 
 builder.Services.AddSingleton<ProizvodiService>();
+builder.Services.AddSingleton<AuthService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

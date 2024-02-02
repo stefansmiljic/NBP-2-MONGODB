@@ -18,7 +18,7 @@ public class ProizvodiService
     public async Task<List<Proizvod>> GetAsync() =>
         await _proizvodiCollection.Find(_ => true).ToListAsync();
 
-    public async Task<Proizvod?> GetAsync(string id) =>
+    public async Task<Proizvod> GetAsync(string id) =>
         await _proizvodiCollection.Find(x=>x.Id == id).FirstOrDefaultAsync();
 
     public async Task CreateAsync(Proizvod newProizvod) =>
