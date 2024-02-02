@@ -13,12 +13,12 @@ public class ProizvodiController : ControllerBase
     public ProizvodiController(ProizvodiService proizvodiService) =>
         _proizvodiService = proizvodiService;
 
-    [HttpGet]
+    [HttpGet("GetProducts")]
     public async Task<List<Proizvod>> Get() =>
         await _proizvodiService.GetAsync();
     
-    [HttpGet("{id:length(24)}")]
-    public async Task<ActionResult<Proizvod>> Get(string id)
+    [HttpGet("GetProduct{id:length(24)}")]
+    public async Task<ActionResult<Proizvod>> GetProduct(string id)
     {
         var proizvod = await _proizvodiService.GetAsync(id);
 
@@ -38,8 +38,8 @@ public class ProizvodiController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = newProizvod.Id}, newProizvod);
     }
 
-    [HttpPut("{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, Proizvod updatedProizvod)
+    [HttpPut("UpdateProduct{id:length(24)}")]
+    public async Task<IActionResult> UpdateProduct(string id, Proizvod updatedProizvod)
     {
         var proizvod = await _proizvodiService.GetAsync(id);
 
@@ -55,8 +55,8 @@ public class ProizvodiController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id:length(24)}")]
-    public async Task<IActionResult> Delete(string id)
+    [HttpDelete("DeleteProduct{id:length(24)}")]
+    public async Task<IActionResult> DeleteProduct(string id)
     {
         var proizvod = await _proizvodiService.GetAsync(id);
 

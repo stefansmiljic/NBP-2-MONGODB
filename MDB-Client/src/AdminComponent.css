@@ -1,0 +1,127 @@
+.kreirajProizvod {
+    margin-top: 25px;
+    height: 360px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+    border: 1px solid #37af33;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.kreirajProizvod h1 {
+    color: #37af33;
+    font-size: 25px;
+}
+
+.kreirajProizvod input[type='text'], input[type='url'], input[type='number'], input[type='button']  {
+    border: 2px solid #37af33;
+    color: #383838;
+    border-radius: 15px;
+    height: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+}
+
+.kreirajProizvod input[type='button'] {
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.kreirajProizvod input[type='button']:hover {
+    background-color: #37af33;
+    color: white;
+    transition: 0.15s;
+}
+
+.selectTip {
+    text-align: center;
+}
+
+.obrisiProizvod {
+    margin-top: 25px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+    border: 1px solid #37af33;
+    border-radius: 20px;
+    height: 360px;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.obrisiProizvod input[type='button'] {
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.obrisiProizvod input[type='button']:hover {
+    background-color: #37af33;
+    color: white;
+    transition: 0.15s;
+}
+
+.obrisiProizvod h1 {
+    color: #37af33;
+    font-size: 25px;
+}
+
+.urediProizvod {
+    margin-top: 25px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
+    border: 1px solid #37af33;
+    border-radius: 20px;    
+    height: 360px;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.updInputName {
+    border: 2px solid #37af33;
+    color: #383838;
+    border-radius: 15px;
+    height: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+}
+
+.urediInputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.urediProizvod h1 {
+    color: #37af33;
+    font-size: 25px;
+}
+
+.urediInputs input[type='button'] {
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.urediInputs input[type='button']:hover {
+    background-color: #37af33;
+    color: white;
+    transition: 0.15s;
+}

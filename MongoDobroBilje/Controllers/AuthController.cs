@@ -17,7 +17,8 @@ public class AuthController : ControllerBase
     [HttpPost("Register")]
     public async Task<IActionResult> Register(Korisnik newKorisnik)
     {
-        if(_authService.GetKorisnikAsync(newKorisnik.Username)!=null)
+        Korisnik k = await _authService.GetKorisnikAsync(newKorisnik.Username);
+        if(k!=null)
         {
             return BadRequest("Korisnik sa tim korisnickim imenom vec postoji.");
         }      
@@ -25,6 +26,7 @@ public class AuthController : ControllerBase
         newKorisnik.Password = passwordHash;
         await _authService.CreateKorisnikAsync(newKorisnik);
         return Ok();
+        
     }
 
     [HttpPost("Login")]
