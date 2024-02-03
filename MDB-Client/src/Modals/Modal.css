@@ -1,0 +1,89 @@
+.modal {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+    width: 30rem;
+    height: 400px;
+    z-index: 10;
+    position: fixed;
+    top: 20vh;
+    left: calc(50% - 15rem);
+  }
+  
+  .backdrop {
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+
+  .registerRef {
+    cursor: pointer;
+  }
+
+  .registerRef:hover {
+    color:blue;
+    transition: 0.15s;
+  }
+
+  .registerDiv {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .registerDiv input {
+    border: 2px solid #37af33;
+    color: #383838;
+    border-radius: 15px;
+    height: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+    width: 256px;
+  }
+
+  .registerDiv input[type='button'] {
+    background-color: transparent;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 200px;
+  }
+
+  .registerDiv input[type='button']:hover {
+    background-color: #37af33;
+    color: white;
+    transition: 0.15s;
+  }
+
+  .registerDiv h1 {
+    color: #37af33;
+    font-size: 25px;
+}
+
+.x {
+    align-self: first baseline;
+    height: 22px;
+    width: 22px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.x:hover {
+    background-color: rgb(24, 204, 48);
+    border-radius: 20px;
+    transition: 0.2s;
+    color: white;
+}
