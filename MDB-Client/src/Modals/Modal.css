@@ -87,3 +87,66 @@
     transition: 0.2s;
     color: white;
 }
+
+.logInDiv {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logInDiv input {
+    border: 2px solid #37af33;
+    color: #383838;
+    border-radius: 15px;
+    height: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+    width: 256px;
+}
+
+.logInDiv input[type='button'] {
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.logInDiv input[type='button']:hover {
+  background-color: #37af33;
+  color: white;
+  transition: 0.15s;
+}
+
+.aboutDiv {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -20px;
+}
+
+.aboutDiv label {
+  border: 2px solid #37af33;
+  color: #383838;
+  border-radius: 15px;
+  height: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 256px;
+}
+
+.aboutDiv h1 {
+  color: #37af33;
+    font-size: 25px;
+}

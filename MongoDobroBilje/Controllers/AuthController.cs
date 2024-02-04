@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
         }
         if(Argon2.Verify(user.Password, password))
         {
-            Token token = new Token(username);
+            Token token = new(username);
             await _authService.CreateTokenAsync(token);
             return Ok(token.TokenString);
         }
@@ -64,5 +64,27 @@ public class AuthController : ControllerBase
         await _authService.RemoveKorisnikAsync(username);
         
         return NoContent();
+    }
+    
+    [HttpDelete("Logout")]
+    public async Task<IActionResult> Logout(string token)
+    {
+        if(token!=null)
+        {
+            await _authService.RemoveTokenAsync(token);
+            return Ok("Uspesno ste se izlogovoali.");
+        }
+        return BadRequest();
+    }
+
+    [HttpGet("GetUserByToken")]
+    public async Task<ActionResult<Korisnik>> GetUserByToken(string token)
+    {
+        var userToken = await _authService.GetTokenByStringAsync(token);
+        var username = userToken.UsernameKorisnika;
+        var korisnik = await _authService.GetKorisnikAsync(username);
+        if(korisnik!=null)
+            return Ok(korisnik);
+        return BadRequest("Greska!");
     }
 }

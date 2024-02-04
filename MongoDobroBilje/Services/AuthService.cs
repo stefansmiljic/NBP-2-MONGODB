@@ -40,7 +40,7 @@ public class AuthService
         var nadjeniToken = await _tokeniCollection.Find(x=>x.UsernameKorisnika == username).FirstOrDefaultAsync();
         if(nadjeniToken==null)
             return null;
-        if(nadjeniToken.VremeIsticanja.CompareTo(DateTime.Now)>=0)
+        if(nadjeniToken.VremeIsticanja.CompareTo(DateTime.Now)<=0)
         {
             await _tokeniCollection.DeleteOneAsync(x=>x.TokenString == nadjeniToken.TokenString);
             return null;
@@ -54,6 +54,18 @@ public class AuthService
     public async Task RemoveTokenAsync(string token) =>
         await _tokeniCollection.DeleteOneAsync(x=>x.TokenString == token);
 
+    public async Task<Token> GetTokenByStringAsync(string token)
+    {
+        var nadjeniToken = await _tokeniCollection.Find(x=>x.TokenString == token).FirstOrDefaultAsync();
+        if(nadjeniToken==null)
+            return null;
+        if(nadjeniToken.VremeIsticanja.CompareTo(DateTime.Now)<=0)
+        {
+            await _tokeniCollection.DeleteOneAsync(x=>x.TokenString == nadjeniToken.TokenString);
+            return null;
+        }
+        return nadjeniToken;
+    }   
     #endregion
 
     #region KorpaCRUD

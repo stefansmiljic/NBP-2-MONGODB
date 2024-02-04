@@ -102,32 +102,6 @@ const handleUpdate = () => {
     window.location.reload();
 };
 
-/*async function getProduct() {
-    try {
-        const data = await fetch("http://localhost:5099/api/Proizvodi/GetProduct" + updateProizvodId, {
-            method: "GET",
-            mode: 'cors',
-        });
-
-        if (!data.ok) {
-            throw new Error(`HTTP error! Status: ${data.status}`);
-        }
-
-        const returnData = await data.json();
-        return returnData;
-    } catch (error) {
-        console.error("Greška prilikom dohvatanja podataka:", error);
-        throw error;
-    }
-}
-
-useEffect(() => {
-    if(updateProizvodId != "") { getProduct().then((data) => {
-        setProizvodZaUpdate(data);
-        console.log("UPDATE PRODUCT: " + JSON.stringify(proizvodZaUpdate));
-    })}
-}, [updateProizvodId]);*/
-
 return (
     <div className="main">
         <div className='urediProizvod'>
@@ -147,7 +121,6 @@ return (
                 onChange={handleUpdatedTipChange}
                 placeholder="Изаберите тип"
                 value={options[noviTip]}
-                //defaultValue={ options[proizvodZaUpdate.tipProizvoda] }
             />
             <input type='button' value={"Ажурирај"} onClick={handleUpdate}></input>
             </div>
