@@ -25,8 +25,11 @@ public class AuthController : ControllerBase
         var passwordHash = Argon2.Hash(newKorisnik.Password);
         newKorisnik.Password = passwordHash;
         await _authService.CreateKorisnikAsync(newKorisnik);
-        return Ok();
-        
+
+        Korpa korpa = new(newKorisnik.Username);
+        await _authService.CreateKorpaAsync(korpa);
+
+        return Ok(); 
     }
 
     [HttpPost("Login")]

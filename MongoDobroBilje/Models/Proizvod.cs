@@ -16,7 +16,6 @@ public class Proizvod
     public TipProizvoda TipProizvoda {get;set;}
 }
 
-
 public enum TipProizvoda
 {
     Caj,
