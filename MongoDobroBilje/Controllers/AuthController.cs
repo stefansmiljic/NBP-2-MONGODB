@@ -48,4 +48,21 @@ public class AuthController : ControllerBase
         }
         return BadRequest("Korisnicko ime ili lozinka koje ste uneli nije tacna.");
     }
+
+    [HttpDelete("DeleteAccount")]
+    public async Task<IActionResult> DeleteAccount(string username)
+    {
+        var korisnik = await _authService.GetKorisnikAsync(username);
+
+        if(korisnik is null)
+        {
+            return NotFound();
+        }
+
+        await _authService.RemoveTokenAsync(username);
+        await _authService.RemoveKorpaAsync(username);
+        await _authService.RemoveKorisnikAsync(username);
+        
+        return NoContent();
+    }
 }
