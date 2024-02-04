@@ -10,4 +10,5 @@ public class Korpa(string username)
     public string Id { get; set; }
     public string UsernameKorisnika { get; set; } = username;
     public List<string> ProizvodiIds { get; set; } = new List<string>();
+    public decimal UkupanRacun { get; set; } = 0;
 }
