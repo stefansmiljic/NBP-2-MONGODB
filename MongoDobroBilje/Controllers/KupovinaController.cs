@@ -54,11 +54,10 @@ public class KupovinaController : ControllerBase
     public async Task<ActionResult> IsprazniKorpu(string username)
     {
         var korpa = await _authService.GetKorpaAsync(username);
+        decimal racunOutput = korpa.UkupanRacun;
         korpa.ProizvodiIds.Clear();
         korpa.UkupanRacun = 0;
         await _authService.UpdateKorpaAsync(username, korpa);
-        return Ok("Uspesno ste ispraznili korpu");
+        return Ok($"Uspesno ste ispraznili korpu, vas racun iznosi {racunOutput}");
     }
-
-
 }
