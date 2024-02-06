@@ -1,7 +1,15 @@
 import './Home.css';
 import Logo from './assets/mdb-logo.png'
+import React, { useRef } from 'react';
 
 function Home() {
+    const ref = useRef(null);
+    let productPage = document.getElementsByClassName("productsDiv");
+    const handleClick = () => {
+      window.scrollTo({top:1000, behavior: "smooth"});
+      console.log("sakdaldjal");
+    };
+
     return (
         <div className='home'>
             <div className='logoDiv'>
@@ -18,6 +26,8 @@ function Home() {
                 <button className='homeBtn'><span></span>ЗАЧИНИ</button>
                 <button className='homeBtn'><span></span>ПРЕПАРАТИ</button>
             </div>
+            <div className='scrollDown' onClick={handleClick}><ion-icon name="chevron-down"></ion-icon></div>
+            <label>Купите сада!</label>
         </div>
     );
 }

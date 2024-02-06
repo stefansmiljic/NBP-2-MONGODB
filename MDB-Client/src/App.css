@@ -1,5 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&display=swap');
 
+html {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: auto;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 5px;
+  /*background-image: linear-gradient(180deg, green, white, green);*/
+  background-color: green;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--lightestgrey); 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(230deg, green,green,green,rgb(77, 214, 43),rgb(22, 201, 52), rgb(154, 248, 158), rgb(36, 207, 36), green,green); 
+  border-radius: 10px;
+}
+
+/* Handle on hover 
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}*/
+
 .App {
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;

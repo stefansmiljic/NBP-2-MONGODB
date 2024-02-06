@@ -38,6 +38,7 @@ function LogInModal() {
           }).then(jsonResponse => {
             console.log(jsonResponse);
             localStorage.setItem("token", jsonResponse);
+            localStorage.setItem("username", username);
           }).catch (error => {
             console.log(error)
           })

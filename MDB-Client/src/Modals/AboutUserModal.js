@@ -32,6 +32,8 @@ function AboutUserModal() {
         });
       }, []);
 
+      console.log("Iz Abouta: " + token);
+
     return (
         <div className="modal">
             <div className="aboutDiv">

@@ -21,8 +21,8 @@ public class KupovinaController : ControllerBase
     [HttpGet("GetKorpa")]
     public async Task<ActionResult<Korpa>> GetKorpa(string username)
     {
-        await _authService.GetKorpaAsync(username);
-        return Ok();
+        var korpa = await _authService.GetKorpaAsync(username);
+        return korpa;
     }
 
     [HttpPut("DodajProizvodUKorpu")]
