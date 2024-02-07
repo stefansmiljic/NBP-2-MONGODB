@@ -29,7 +29,6 @@ export default function CartProducts({handleRefresh, deleteFlag}) {
       }
         getKorpa().then((data) => {
             setKorpaProizvodi(data.proizvodiIds);
-            console.log("random");
         });
       }, [deleteFlag]);
 

@@ -1,5 +1,5 @@
 .home {
-    position: absolute;
+    position: relative;
     top: 0;
     height: 100vh;
     width: 100vw;
@@ -9,6 +9,7 @@
     flex-direction: column;
     scroll-snap-align: start;
     scroll-snap-stop: normal;
+    background-color: transparent;
 }
 
 .header h1 {

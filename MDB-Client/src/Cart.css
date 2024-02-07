@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&display=swap');
+
 .cartDiv {
     height: 100vh;
     background-color: transparent;
@@ -25,6 +27,22 @@
     align-items: center;
 }
 
+.numberProducts {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 20px;
+  display: flex;
+  margin-bottom: -15px;
+  margin-left: 32px;
+  position: sticky;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 .active, .collapsible:hover {
     background-color: green;
     color: white;
@@ -35,7 +53,10 @@
     width: 500px;
     height: 100vh;
     overflow: hidden;
-    background-color: rgba(29, 29, 29, 0.548);
+    overflow-y: scroll;
+    background-image: linear-gradient(135deg, rgba(0, 128, 0, 0.466), rgb(7, 180, 7));
+    background-color: rgba(117, 117, 117, 0.322);
+    /*border-left: #37af33 solid 5px;*/
     backdrop-filter: blur(10px);
     color: white;
     display: flex;
@@ -47,6 +68,8 @@
     flex-direction: row;
     margin-top: 100px;
     justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
   }
 
   .cartProduct {
@@ -59,6 +82,7 @@
     color: green;
     border-radius: 20px;
     margin-right: 5px;
+    margin-top: 5px;
   }
 
   .cartProductImg {

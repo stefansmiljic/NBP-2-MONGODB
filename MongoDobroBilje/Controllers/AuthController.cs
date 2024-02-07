@@ -87,4 +87,21 @@ public class AuthController : ControllerBase
             return Ok(korisnik);
         return BadRequest("Greska!");
     }
+
+    [HttpPut("UpdateUser")]
+    public async Task<IActionResult> UpdateKorisnik(string username, Korisnik updatedKorisnik)
+    {
+        var korisnik = await _authService.GetKorisnikAsync(username);
+
+        if(korisnik is null)
+        {
+            return NotFound();
+        }
+
+        updatedKorisnik.Username = korisnik.Username;
+
+        await _authService.UpdateKorisnikAsync(username, updatedKorisnik);
+
+        return NoContent();
+    }
 }
