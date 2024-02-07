@@ -5,6 +5,8 @@ function Products({handleRefresh, productTypeFlag}) {
     const [proizvodi, setProizvodi] = useState([]);
     var username = localStorage.getItem("username");
 
+    
+
     async function getAllProducts() {
         try {
             const data = await fetch("http://localhost:5099/api/Proizvodi/GetProducts", {
@@ -45,6 +47,7 @@ function Products({handleRefresh, productTypeFlag}) {
 
     return (
         <div className="productsMain">
+            <div className='productsSubDiv'>
             {productTypeFlag != null ? (proizvodi.filter(p=>p.tipProizvoda == productTypeFlag).map((proizvod, index) => {
                 return (
                     <div className="productDiv" key={index}>
@@ -52,8 +55,7 @@ function Products({handleRefresh, productTypeFlag}) {
                         <label>{proizvod.imeProizvoda}</label>
                         <label>Цена: <b>{proizvod.cena} дин.</b></label>
                         <input type='button' value={"Додај у корпу"} onClick={handleAddProductToCart(proizvod.id)}></input>
-                    </div>
-                    )
+                    </div>)
             })) : (proizvodi.map((proizvod, index) => {
                 return (
                     <div className="productDiv" key={index}>
@@ -62,8 +64,19 @@ function Products({handleRefresh, productTypeFlag}) {
                         <label>Цена: <b>{proizvod.cena} дин.</b></label>
                         <input type='button' value={"Додај у корпу"} onClick={handleAddProductToCart(proizvod.id)}></input>
                     </div>
-                    )
+                )
             }))}
+            </div>
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
         </div>
     );
 }
