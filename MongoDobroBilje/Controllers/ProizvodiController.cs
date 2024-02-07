@@ -17,11 +17,6 @@ public class ProizvodiController : ControllerBase
     public async Task<List<Proizvod>> Get(int page=1) =>
         await _proizvodiService.GetAsyncPaginated(page);
 
-    [HttpGet("GetProductsNumber")]
-    public async Task<ActionResult> NumberOfProducts() {
-        var broj = await _proizvodiService.GetAllProducts();
-        return Ok(broj.Count);
-    }
     
     [HttpGet("GetProduct{id:length(24)}")]
     public async Task<ActionResult<Proizvod>> GetProduct(string id)
@@ -74,5 +69,12 @@ public class ProizvodiController : ControllerBase
         await _proizvodiService.RemoveAsync(id);
         
         return NoContent();
+    }
+
+    [HttpGet("CountPages")]
+    public async Task<IActionResult> CountPages(int pageSize)
+    {
+        var numberOfProducts = (await _proizvodiService.GetNumberOfProducts()) / pageSize + ((await _proizvodiService.GetNumberOfProducts()) % pageSize == 0 ? 0 : 1);
+        return Ok(numberOfProducts);
     }
 }

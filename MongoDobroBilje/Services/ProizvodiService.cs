@@ -19,8 +19,25 @@ public class ProizvodiService
     public async Task<List<Proizvod>> GetAllProducts() =>
         await _proizvodiCollection.Find(_ => true).ToListAsync();
 
-    public async Task<List<Proizvod>> GetAsyncPaginated(int page=1, int pageSize=5) =>
-        await _proizvodiCollection.Find(_ => true).Skip((page-1)*5).Limit(5).ToListAsync();
+    public async Task<List<Proizvod>> GetAsyncPaginated(int page=1, int pageSize=5, int type = -1)
+    {
+        var proizvodi = new List<Proizvod>();
+        if(type == -1)
+        {
+            proizvodi = await _proizvodiCollection.Find(_ => true).Skip((page-1)*pageSize).Limit(pageSize).ToListAsync();
+        }
+        else
+        {
+            proizvodi = await _proizvodiCollection.Find(x => x.TipProizvoda == (TipProizvoda)type).Skip((page-1)*pageSize).Limit(pageSize).ToListAsync();
+        }
+        return proizvodi;
+    }
+
+    public async Task<int> GetNumberOfProducts()
+    {
+        var number = await _proizvodiCollection.Find(_ => true).ToListAsync();
+        return number.Count;
+    }
 
     public async Task<Proizvod> GetAsync(string id) =>
         await _proizvodiCollection.Find(x=>x.Id == id).FirstOrDefaultAsync();
