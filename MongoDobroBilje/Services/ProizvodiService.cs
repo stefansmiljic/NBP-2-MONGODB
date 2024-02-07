@@ -1,6 +1,7 @@
 using MongoDobroBilje.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MongoDobroBilje.Services;
 
@@ -15,8 +16,11 @@ public class ProizvodiService
         _proizvodiCollection = mongoDatabase.GetCollection<Proizvod>(prodavnicaDatabaseSettings.Value.ProductsCollectionName);
     }
 
-    public async Task<List<Proizvod>> GetAsync() =>
+    public async Task<List<Proizvod>> GetAllProducts() =>
         await _proizvodiCollection.Find(_ => true).ToListAsync();
+
+    public async Task<List<Proizvod>> GetAsyncPaginated(int page=1, int pageSize=5) =>
+        await _proizvodiCollection.Find(_ => true).Skip((page-1)*5).Limit(5).ToListAsync();
 
     public async Task<Proizvod> GetAsync(string id) =>
         await _proizvodiCollection.Find(x=>x.Id == id).FirstOrDefaultAsync();

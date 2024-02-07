@@ -15,6 +15,12 @@
     overflow-y: scroll;
     padding-top: 150px;
     padding-bottom: 100px;
+    flex-direction: column;
+}
+
+.productsSubDiv{
+    display: flex;
+
 }
 
 .productDiv {
@@ -56,3 +62,18 @@
     border: none;
     font-weight: 500;
 }
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+
+  .pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+  }
+
+  .pagination a:hover:not(.active) {background-color: #ddd;}

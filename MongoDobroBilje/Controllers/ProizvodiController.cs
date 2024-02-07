@@ -14,8 +14,14 @@ public class ProizvodiController : ControllerBase
         _proizvodiService = proizvodiService;
 
     [HttpGet("GetProducts")]
-    public async Task<List<Proizvod>> Get() =>
-        await _proizvodiService.GetAsync();
+    public async Task<List<Proizvod>> Get(int page=1) =>
+        await _proizvodiService.GetAsyncPaginated(page);
+
+    [HttpGet("GetProductsNumber")]
+    public async Task<ActionResult> NumberOfProducts() {
+        var broj = await _proizvodiService.GetAllProducts();
+        return Ok(broj.Count);
+    }
     
     [HttpGet("GetProduct{id:length(24)}")]
     public async Task<ActionResult<Proizvod>> GetProduct(string id)
