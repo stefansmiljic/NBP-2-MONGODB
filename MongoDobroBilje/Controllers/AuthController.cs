@@ -98,7 +98,9 @@ public class AuthController : ControllerBase
         }
 
         updatedKorisnik.Username = korisnik.Username;
+
         await _authService.UpdateKorisnikAsync(username, updatedKorisnik);
+
         return NoContent();
     }
 }

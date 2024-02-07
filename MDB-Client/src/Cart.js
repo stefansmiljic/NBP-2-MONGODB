@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react';
 import CartProduct from './CartProduct';
 import CartProducts from './CartProducts';
 
-function Cart() {
+function Cart({updateFlag, setUpdateFlag}) {
     const [korpa, setKorpa] = useState([]);
     const [korpaProizvodi, setKorpaProizvodi] = useState([]);
     const [deleteFlag, setDeleteFlag] = useState(false);
+
     var username = localStorage.getItem("username");
 
       async function getKorpa() {
@@ -21,7 +22,6 @@ function Cart() {
             }
             
             const returnData = await data.json();
-            //console.log("Stampanje iz Cart, korpa-data: " + returnData);
             return returnData;
         }
         catch (error) {
@@ -34,14 +34,11 @@ function Cart() {
             setKorpa(data);
             setKorpaProizvodi(data.proizvodiIds);
         });
-      }, [deleteFlag]);
+      }, [updateFlag]);
 
       function handleRefresh() {
-        setDeleteFlag(prevDeleteFlag => !prevDeleteFlag);
-        console.log("razlicit random")
+        setUpdateFlag(prevUpdateFlag => !prevUpdateFlag);
       };
-
-      console.log(korpaProizvodi);
 
     const onClick = () => {
         var content = document.getElementsByClassName("cartContent")[0];
@@ -56,13 +53,14 @@ function Cart() {
         }
     }
 
-    console.log("Stampanje iz carta, korpa: " + JSON.stringify(korpa));
-
     return (
         <div className='cartDiv'>
+            <div>
+            <span className='numberProducts'>{korpaProizvodi.length}</span>
             <button type='button' className='collapsible' onClick={onClick}><ion-icon name="cart"></ion-icon></button>
+            </div>
             <div className='cartContent' style={{display: "none"}}>
-                <CartProducts handleRefresh={handleRefresh} deleteFlag={deleteFlag}/>
+                <CartProducts handleRefresh={handleRefresh} deleteFlag={updateFlag}/>
                 <label>За плаћање укупно: {korpa.ukupanRacun} дин.</label>
             </div>
         </div>

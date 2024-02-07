@@ -6,12 +6,9 @@ function CartProduct({productId, handleRefresh}) {
     const [updated, setUpdated] = useState(null);
 
     var product1 = JSON.stringify(productId);
-    console.log(handleRefresh);
     var product2 = JSON.parse(product1);
     var product3 = product2.productId;
-    console.log(product3);
     var username = localStorage.getItem("username");
-    console.log(product3);
     async function getProduct() {
       const product = await fetch(
         "http://localhost:5099/api/Proizvodi/GetProduct" + productId
@@ -28,8 +25,6 @@ function CartProduct({productId, handleRefresh}) {
             setProductData(data);
         });
     }, [productId]);
-
-    console.log("STAMPAM IZ CART PRODUCT, PRODUCt: " + productData);
 
     const handleDeleteCartProduct = async () => {
         await fetch(
