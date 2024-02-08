@@ -13,7 +13,9 @@ public class Proizvod
     public string ImeProizvoda { get; set; }
     public string UrlSlike { get; set; }
     public decimal Cena { get; set; }
-    public TipProizvoda TipProizvoda {get;set;}
+    public string Info { get; set; }
+    public int BrojPosecenosti { get; set; } = 0;
+    public TipProizvoda TipProizvoda { get; set; }
 }
 
 public enum TipProizvoda

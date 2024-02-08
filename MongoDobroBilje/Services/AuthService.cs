@@ -9,6 +9,7 @@ public class AuthService
     private readonly IMongoCollection<Korisnik> _korisniciCollection;
     private readonly IMongoCollection<Token> _tokeniCollection;
     private readonly IMongoCollection<Korpa> _korpeCollection;
+    private readonly IMongoCollection<Proizvod> _proizvodiCollection;
 
     public AuthService(IOptions<ProdavnicaDatabaseSettings> prodavnicaDatabaseSettings)
     {
@@ -17,6 +18,7 @@ public class AuthService
         _korisniciCollection = mongoDatabase.GetCollection<Korisnik>(prodavnicaDatabaseSettings.Value.UsersCollectionName);
         _tokeniCollection = mongoDatabase.GetCollection<Token>(prodavnicaDatabaseSettings.Value.TokenCollectionName);
         _korpeCollection = mongoDatabase.GetCollection<Korpa>(prodavnicaDatabaseSettings.Value.KorpeCollectionName);
+        _proizvodiCollection = mongoDatabase.GetCollection<Proizvod>(prodavnicaDatabaseSettings.Value.ProductsCollectionName);
     }
 
     #region UserCRUD
@@ -34,6 +36,7 @@ public class AuthService
 
     public async Task RemoveKorisnikAsync(string username) =>
         await _korisniciCollection.DeleteOneAsync(x=>x.Username == username);
+
 
     #endregion
     

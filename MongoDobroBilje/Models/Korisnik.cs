@@ -14,4 +14,5 @@ public class Korisnik()
     public string Password { get; set; }
     public string Email { get; set; }
     public bool IsAdmin { get; set; } = false;
+    public string[] NajskorijePoseceniProizvodi { get; set; } = new string[5];
 }

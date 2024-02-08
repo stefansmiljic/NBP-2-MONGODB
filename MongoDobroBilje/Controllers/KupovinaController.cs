@@ -62,4 +62,31 @@ public class KupovinaController : ControllerBase
         await _korpaService.UpdateKorpaAsync(username, korpa);
         return Ok($"Uspesno ste ispraznili korpu, vas racun iznosi {racunOutput}");
     }
+
+    [HttpPut("DodajPosecenProizvod")]
+    public async Task<ActionResult> DodajPosecenProizvod(string username, string proizvodId)
+    {
+        var korisnik = await _authService.GetKorisnikAsync(username);
+        if(korisnik.NajskorijePoseceniProizvodi[4] is null or "")
+        {
+            for(int i=0; i<5; i++)
+            {
+                if(korisnik.NajskorijePoseceniProizvodi[i] is null or "")
+                {
+                    korisnik.NajskorijePoseceniProizvodi[i] = proizvodId;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for(int i=0; i<4; i++)
+            {
+                korisnik.NajskorijePoseceniProizvodi[i] = korisnik.NajskorijePoseceniProizvodi[i+1];
+            }
+            korisnik.NajskorijePoseceniProizvodi[4] = proizvodId;
+        }
+        await _authService.UpdateKorisnikAsync(username, korisnik);
+        return Ok();
+    }
 }
