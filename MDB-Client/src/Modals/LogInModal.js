@@ -37,9 +37,10 @@ function LogInModal() {
           }).then(response => {
             return response.json();
           }).then(jsonResponse => {
-            console.log(jsonResponse);
-            localStorage.setItem("token", jsonResponse);
-            localStorage.setItem("username", username);
+            console.log(jsonResponse.token);
+            sessionStorage.setItem("token", jsonResponse.token);
+            sessionStorage.setItem("username", jsonResponse.user.username);
+            sessionStorage.setItem("isAdmin", jsonResponse.user.isAdmin);
           }).catch (error => {
             console.log(error)
           })

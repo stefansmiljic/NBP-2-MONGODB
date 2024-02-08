@@ -8,7 +8,7 @@ function CartProduct({productId, handleRefresh}) {
     var product1 = JSON.stringify(productId);
     var product2 = JSON.parse(product1);
     var product3 = product2.productId;
-    var username = localStorage.getItem("username");
+    var username = sessionStorage.getItem("username");
     async function getProduct() {
       const product = await fetch(
         "http://localhost:5099/api/Proizvodi/GetProduct" + productId

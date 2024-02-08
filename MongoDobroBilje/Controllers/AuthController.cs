@@ -44,7 +44,18 @@ public class AuthController : ControllerBase
         {
             Token token = new(username);
             await _authService.CreateTokenAsync(token);
-            return Ok(token.TokenString);
+            
+            var response = new
+            {
+                Token = token.TokenString,
+                User = new {
+                    id = user.Id,
+                    username = user.Username,
+                    isAdmin = user.IsAdmin
+                }
+            };
+
+            return Ok(response);
         }
         return BadRequest("Korisnicko ime ili lozinka koje ste uneli nije tacna.");
     }

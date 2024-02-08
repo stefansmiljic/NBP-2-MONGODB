@@ -4,7 +4,7 @@ import Home from './Home';
 import Navbar from './Navbar';
 import Products from './Products';
 import Cart from './Cart';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [updateFlag, setUpdateFlag] = useState(false);

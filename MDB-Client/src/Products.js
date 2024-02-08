@@ -10,7 +10,7 @@ function Products({handleRefresh, productTypeFlag}) {
 
     const pageSize = 5;
 
-    var username = localStorage.getItem("username");
+    var username = sessionStorage.getItem("username");
 
     //console.log("Iz products: " + productTypeFlag);
 
@@ -44,8 +44,6 @@ function Products({handleRefresh, productTypeFlag}) {
         setPage(1);
     }, [productTypeFlag]);
 
-      console.log(pagesNumber);
-
        const brojStranica = tip => async () => {
         try {
         const data = await fetch("http://localhost:5099/api/Proizvodi/CountPages?pageSize=" + pageSize + "&type=" + tip, {
@@ -65,8 +63,6 @@ function Products({handleRefresh, productTypeFlag}) {
             throw error;
         }
       }
-
-      console.log(pagesNumber);
 
       const handleAddProductToCart = pId => async () => {
         await fetch(
