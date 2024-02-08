@@ -52,7 +52,11 @@ public class AuthController : ControllerBase
             var response = new
             {
                 Token = token.TokenString,
-                User = user
+                User = new {
+                    id = user.Id,
+                    username = user.Username,
+                    isAdmin = user.IsAdmin
+                }
             };
 
             return Ok(response);

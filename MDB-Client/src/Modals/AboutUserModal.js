@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 
 function AboutUserModal() {
     const [user, setUser] = useState([]);
-    var token = localStorage.getItem("token");
+    var token = sessionStorage.getItem("token");
 
     async function getUserByToken() {
         try {
@@ -29,6 +29,7 @@ function AboutUserModal() {
     useEffect(() => {
         getUserByToken().then((data) => {
             setUser(data);
+            sessionStorage.setItem("user", data);
         });
       }, []);
 

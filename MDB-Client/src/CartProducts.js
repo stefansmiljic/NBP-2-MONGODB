@@ -5,7 +5,7 @@ import './Cart.css';
 export default function CartProducts({handleRefresh, deleteFlag}) {
     const [korpaProizvodi, setKorpaProizvodi] = useState([]);
     
-    var username = localStorage.getItem("username");
+    var username = sessionStorage.getItem("username");
 
     useEffect(() => {
       async function getKorpa() {

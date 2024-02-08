@@ -8,7 +8,7 @@ function Cart({updateFlag, setUpdateFlag}) {
     const [korpaProizvodi, setKorpaProizvodi] = useState([]);
     const [deleteFlag, setDeleteFlag] = useState(false);
 
-    var username = localStorage.getItem("username");
+    var username = sessionStorage.getItem("username");
 
       async function getKorpa() {
         try {

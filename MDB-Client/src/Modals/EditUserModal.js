@@ -9,7 +9,7 @@ function EditUserModal(props) {
     const [email, setEmail] = useState("");
     const [user, setUser] = useState([]);
 
-    var token = localStorage.getItem("token");
+    var token = sessionStorage.getItem("token");
 
     const handleImeChange = (value) => {
         setIme(value);

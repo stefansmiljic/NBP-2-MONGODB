@@ -13,10 +13,17 @@ function Navbar() {
   const [LogInModalIsOpen, setLogInModalIsOpen] = useState(false);
   const [AboutUserModalIsOpen, setAboutUserModalIsOpen] = useState(false);
   const [EditUserModalIsOpen, setEditUserModalIsOpen] = useState(false);
-  const [user, setUser] = useState([]);
+  const [token, setToken] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  var token = localStorage.getItem("token");
+  //var token = localStorage.getItem("token");
   console.log("Token: " + token);
+  useEffect(() =>{
+    setIsAdmin(sessionStorage.getItem("isAdmin"));
+    console.log("JELI ADMIN??: " + typeof(isAdmin));
+    setToken(sessionStorage.getItem("token"));
+  }, [token, isAdmin]);
+  
 
   function openLogInModalHandler() {
     setLogInModalIsOpen(true);
@@ -47,41 +54,12 @@ function Navbar() {
         "http://localhost:5099/api/Auth/Logout?token=" + token,
         { method: "DELETE" }
     );
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("isAdmin");
+    setIsAdmin(false);
     window.location.reload();
   };
-
-  async function getUserByToken() {
-    if(token!=null)
-    {
-      try {
-          const data = await fetch("http://localhost:5099/api/Auth/GetUserByToken?token=" + token, {
-              method: "GET",
-              mode: 'cors',
-          });
-  
-          if (!data.ok) {
-              throw new Error(`HTTP error! Status: ${data.status}`);
-          }
-  
-          const returnData = await data.json();
-          return returnData;
-      } catch (error) {
-          console.error("Greška prilikom dohvatanja podataka:", error);
-          throw error;
-      }
-    }
-    else
-    {
-      return;
-    }
-}
-
-useEffect(() => {
-    getUserByToken().then((data) => {
-        setUser(data);
-    });
-  }, [token]);
 
   return (
       <div className='navbar'>
@@ -89,7 +67,7 @@ useEffect(() => {
             <a href='http://localhost:3000/' className='logoRef'><img className='mdbLogo' src={Logo}/></a>
         </div>
         <ul className='navbarList'>
-          <li hidden={user? !user.isAdmin : true} className='menuItem'><a href="/admin"><span className='menuIcon'><ion-icon name="settings"></ion-icon></span>Админ</a></li>
+          {isAdmin == "true" && <li className='menuItem'><a href="/admin"><span className='menuIcon'><ion-icon name="settings"></ion-icon></span>Админ</a></li>}
           <li className='photoLi'><img className='userPhoto'/></li>
           <li hidden={token != null} className='menuItem'><a href="#" onClick={openLogInModalHandler}><span className='menuIcon'><ion-icon name="person"></ion-icon></span>Улогуј се</a></li>
           <li hidden={token == null} className='menuItem'><a href="#"><span className='menuIcon'><ion-icon name="person"></ion-icon></span>Мој налог<span className='menuIcon'><ion-icon name="caret-down-outline"></ion-icon></span></a>
