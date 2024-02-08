@@ -30,13 +30,14 @@
 }
 
 .kreirajProizvod input[type='button'] {
-    background-color: transparent;
+    background-color: #37af33;
+    color: white;
     cursor: pointer;
     margin-top: 20px;
 }
 
 .kreirajProizvod input[type='button']:hover {
-    background-color: #37af33;
+    background-color: #20641d;
     color: white;
     transition: 0.15s;
 }
@@ -61,13 +62,14 @@
 }
 
 .obrisiProizvod input[type='button'] {
-    background-color: transparent;
+    background-color: #37af33;
+    color: white;
     cursor: pointer;
     margin-top: 20px;
 }
 
 .obrisiProizvod input[type='button']:hover {
-    background-color: #37af33;
+    background-color: #20641d;
     color: white;
     transition: 0.15s;
 }
@@ -115,13 +117,14 @@
 }
 
 .urediInputs input[type='button'] {
-    background-color: transparent;
+    background-color: #37af33;
+    color: white;
     cursor: pointer;
     margin-top: 20px;
 }
 
 .urediInputs input[type='button']:hover {
-    background-color: #37af33;
+    background-color: #20641d;
     color: white;
     transition: 0.15s;
 }

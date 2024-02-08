@@ -66,7 +66,7 @@ function EditUserModal(props) {
                 <h1>Измени податке</h1>
                 <input type="text" placeholder="Име" defaultValue={user.ime} onChange={(e) => handleImeChange(e.target.value)}></input>
                 <input type="text" placeholder="Презиме" defaultValue={user.prezime} onChange={(e) => handlePrezimeChange(e.target.value)}></input>
-                <input type="text" placeholder="Корисничко име" defaultValue={user.username} onChange={(e) => handleUsernameChange(e.target.value)}></input>
+                {/*<input type="text" placeholder="Корисничко име" defaultValue={user.username} onChange={(e) => handleUsernameChange(e.target.value)}></input>*/}
                 <input type="password" placeholder="Лозинка" onChange={(e) => handleLozinkaChange(e.target.value)}></input>
                 <input type="email" placeholder="Имејл" defaultValue={user.email} onChange={(e) => handleEmailChange(e.target.value)}></input>
                 <input type="button" value={"Сачувај измене"} ></input>

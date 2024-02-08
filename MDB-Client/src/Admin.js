@@ -9,9 +9,12 @@ import AdminEdit from './AdminEdit';
 function Admin(){
     return (
         <div className='main'>
-            <AdminCreate></AdminCreate>
-            <AdminDelete></AdminDelete>
-            <AdminEdit></AdminEdit>
+            <div className='components'>
+                <AdminCreate></AdminCreate>
+                <AdminDelete></AdminDelete>
+                <AdminEdit></AdminEdit>
+            </div>
+            <a href="http://localhost:3000/" className="back-button">Повратак</a>
         </div>
     )
 }

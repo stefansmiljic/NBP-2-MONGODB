@@ -173,13 +173,14 @@
 }
 
 .editUserDiv input[type='button'] {
-  background-color: transparent;
+  background-color: #37af33;
+  color: white;
   cursor: pointer;
   width: 318px;
 }
 
 .editUserDiv input[type='button']:hover {
-    background-color: #37af33;
+    background-color: #20641d;
     color: white;
     transition: 0.15s;
 }

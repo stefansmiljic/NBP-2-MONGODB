@@ -8,6 +8,7 @@ function LogInModal() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const handleUsernameChange = (value) => {
         setUsername(value);
