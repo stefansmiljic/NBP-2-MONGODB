@@ -11,8 +11,12 @@ namespace MongoDobroBilje.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly AuthService _authService;
-    public AuthController(AuthService authService) =>
+    private readonly KorpaService _korpaService;
+    public AuthController(AuthService authService, KorpaService korpaService)
+    {
         _authService = authService;
+        _korpaService = korpaService;
+    }
 
     [HttpPost("Register")]
     public async Task<IActionResult> Register(Korisnik newKorisnik)
@@ -44,7 +48,14 @@ public class AuthController : ControllerBase
         {
             Token token = new(username);
             await _authService.CreateTokenAsync(token);
-            return Ok(token.TokenString);
+            
+            var response = new
+            {
+                Token = token.TokenString,
+                User = user
+            };
+
+            return Ok(response);
         }
         return BadRequest("Korisnicko ime ili lozinka koje ste uneli nije tacna.");
     }
@@ -60,7 +71,7 @@ public class AuthController : ControllerBase
         }
 
         await _authService.RemoveTokenAsync(username);
-        await _authService.RemoveKorpaAsync(username);
+        await _korpaService.RemoveKorpaAsync(username);
         await _authService.RemoveKorisnikAsync(username);
         
         return NoContent();

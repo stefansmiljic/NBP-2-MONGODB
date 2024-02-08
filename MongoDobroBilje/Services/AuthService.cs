@@ -73,17 +73,8 @@ public class AuthService
 
     #region KorpaCRUD
 
-    public async Task<Korpa> GetKorpaAsync(string username) =>
-        await _korpeCollection.Find(x=>x.UsernameKorisnika == username).FirstOrDefaultAsync();
-
     public async Task CreateKorpaAsync(Korpa newKorpa) =>
         await _korpeCollection.InsertOneAsync(newKorpa);
-
-    public async Task UpdateKorpaAsync(string username, Korpa updatedKorpa) =>
-        await _korpeCollection.ReplaceOneAsync(x=>x.UsernameKorisnika == username, updatedKorpa);
-
-    public async Task RemoveKorpaAsync(string username) =>
-        await _korpeCollection.DeleteOneAsync(x=>x.UsernameKorisnika == username);
 
     #endregion
 }
