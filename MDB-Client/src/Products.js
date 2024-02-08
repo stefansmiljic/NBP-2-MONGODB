@@ -3,17 +3,24 @@ import { useEffect, useState } from 'react';
 
 function Products({handleRefresh, productTypeFlag}) {
     const [proizvodi, setProizvodi] = useState([]);
+    const [pagesNumber, setPagesNumber] = useState([]);
+    const [page, setPage] = useState(1);
+    const [isActive, setIsActive] = useState(false);
+    var activePageBtn;
+
+    const pageSize = 5;
+
     var username = localStorage.getItem("username");
 
-    
+    //console.log("Iz products: " + productTypeFlag);
 
     async function getAllProducts() {
         try {
-            const data = await fetch("http://localhost:5099/api/Proizvodi/GetProducts", {
+            const data = await fetch("http://localhost:5099/api/Proizvodi/GetProductsPaginated?page=" + page + "&pageSize=" + pageSize + "&type=" + productTypeFlag, {
                 method: "GET",
                 mode: 'cors',
             });
-    
+
             if (!data.ok) {
                 throw new Error(`HTTP error! Status: ${data.status}`);
             }
@@ -29,9 +36,37 @@ function Products({handleRefresh, productTypeFlag}) {
     useEffect(() => {
         getAllProducts().then((data) => {
             setProizvodi(data);
-        });
-      }, [productTypeFlag]);
+            //setPagesNumber(parseInt((data.length / 5) + ((data.length % 5) == 0 ? 0 : 1)));
+        }).then(brojStranica(productTypeFlag))
+      }, [productTypeFlag, page]);
 
+    useEffect(() => {
+        setPage(1);
+    }, [productTypeFlag]);
+
+      console.log(pagesNumber);
+
+       const brojStranica = tip => async () => {
+        try {
+        const data = await fetch("http://localhost:5099/api/Proizvodi/CountPages?pageSize=" + pageSize + "&type=" + tip, {
+            method: "GET",
+            mode: 'cors',
+        });
+
+        if (!data.ok) {
+            throw new Error(`HTTP error! Status: ${data.status}`);
+        }
+
+        const returnData = await data.json();
+        setPagesNumber(returnData);
+        return returnData;
+        } catch (error) {
+            console.error("Greška prilikom dohvatanja podataka:", error);
+            throw error;
+        }
+      }
+
+      console.log(pagesNumber);
 
       const handleAddProductToCart = pId => async () => {
         await fetch(
@@ -45,10 +80,22 @@ function Products({handleRefresh, productTypeFlag}) {
               }
     };
 
+    const postaviStranicu = (stranica) => () => {
+        setPage(stranica);
+        var prevActivePage = document.getElementsByClassName('active')[0];
+        var activePageBtn = document.getElementById(stranica + "-pageBtn");
+        if(!activePageBtn.classList.contains('active'))
+        {
+            prevActivePage.classList.remove('active');
+            activePageBtn.classList.add('active')
+        }
+        console.log("Stranica: " + stranica);
+    }
+
     return (
         <div className="productsMain">
             <div className='productsSubDiv'>
-            {productTypeFlag != null ? (proizvodi.filter(p=>p.tipProizvoda == productTypeFlag).map((proizvod, index) => {
+            {productTypeFlag != -1 ? (proizvodi.filter(p=>p.tipProizvoda == productTypeFlag).map((proizvod, index) => {
                 return (
                     <div className="productDiv" key={index}>
                         <img src={proizvod.urlSlike} className="productImage"/>
@@ -67,15 +114,13 @@ function Products({handleRefresh, productTypeFlag}) {
                 )
             }))}
             </div>
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+            <h1>Изаберите здраво. Изаберите повољно!</h1>
+            <div className="pagination">
+                {pagesNumber.map((i,index) => {
+                    return (
+                        <a value={index + 1} id={index + 1 + "-pageBtn"} className={index == 0 ? 'active' : ''} onClick={postaviStranicu(index + 1)} >{index + 1}</a>
+                    );
+                })}
             </div>
         </div>
     );

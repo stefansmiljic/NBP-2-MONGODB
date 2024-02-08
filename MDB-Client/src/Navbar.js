@@ -5,11 +5,13 @@ import LogInModal from './Modals/LogInModal';
 import RegisterModal from './Modals/RegisterModal';
 import Backdrop from './Modals/Backdrop';
 import AboutUserModal from './Modals/AboutUserModal';
+import EditUserModal from './Modals/EditUserModal';
 
 function Navbar() {
   //const [token, setToken] = useState(null);
   const [LogInModalIsOpen, setLogInModalIsOpen] = useState(false);
   const [AboutUserModalIsOpen, setAboutUserModalIsOpen] = useState(false);
+  const [EditUserModalIsOpen, setEditUserModalIsOpen] = useState(false);
 
   var token = localStorage.getItem("token");
   console.log("Token: " + token);
@@ -28,6 +30,14 @@ function Navbar() {
 
   function closeAboutUserModalHandler() {
     setAboutUserModalIsOpen(false);
+  }
+
+  function openEditUserModalHandler() {
+    setEditUserModalIsOpen(true);
+  }
+
+  function closeEditUserModalHandler() {
+    setEditUserModalIsOpen(false);
   }
 
   const handleLogOut = async () => {
@@ -49,7 +59,8 @@ function Navbar() {
           <li hidden={token != null} className='menuItem'><a href="#" onClick={openLogInModalHandler}><span className='menuIcon'><ion-icon name="person"></ion-icon></span>Улогуј се</a></li>
           <li hidden={token == null} className='menuItem'><a href="#"><span className='menuIcon'><ion-icon name="person"></ion-icon></span>Мој налог<span className='menuIcon'><ion-icon name="caret-down-outline"></ion-icon></span></a>
           <ul className='dropdown'>
-            <li><a href='#' onClick={openAboutUserModalHandler}>О мени</a></li>
+            <li><a href='#' onClick={openAboutUserModalHandler}>Моји подаци</a></li>
+            <li><a href='#' onClick={openEditUserModalHandler}>Измени податке</a></li>
             <li><a href='#' onClick={handleLogOut}>Одјави се</a></li>
           </ul>
           </li>
@@ -67,6 +78,8 @@ function Navbar() {
         {LogInModalIsOpen && <Backdrop onClick={closeLogInModalHandler}/>}
         {AboutUserModalIsOpen && <AboutUserModal onOk={closeLogInModalHandler}/>}
         {AboutUserModalIsOpen && <Backdrop onClick={closeAboutUserModalHandler}/>}
+        {EditUserModalIsOpen && <EditUserModal onOk={closeEditUserModalHandler}/>}
+        {EditUserModalIsOpen && <Backdrop onClick={closeEditUserModalHandler}/>}
       </div>
   );
 }

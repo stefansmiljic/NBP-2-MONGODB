@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 function App() {
   const [updateFlag, setUpdateFlag] = useState(false);
-  const [productTypeFlag, setProductTypeFlag] = useState(null);
+  const [productTypeFlag, setProductTypeFlag] = useState(-1);
 
   const productType = pType => () => {
     setProductTypeFlag(pType);

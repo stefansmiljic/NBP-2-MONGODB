@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Marck+Script&family=Pacifico&display=swap');
+
 .productsMain {
     height: 100vh;
     background-size: cover;
@@ -8,19 +10,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    
     margin: 0;
     scroll-snap-align: start;
     scroll-snap-stop: normal;
     overflow-y: scroll;
-    padding-top: 150px;
-    padding-bottom: 100px;
+    
+    padding-top: 50px;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .productsSubDiv{
     display: flex;
-
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .productDiv {
@@ -63,17 +67,32 @@
     font-weight: 500;
 }
 
+.pagination {
+}
+
 .pagination a {
-    color: black;
+    color: rgb(16, 156, 28);
+    background-color: white;
+    border-radius: 50px;
+    margin-left: 3px;
+    margin-right: 3px;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
+    filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.295));
+    cursor: pointer;
   }
 
   .pagination a.active {
-    background-color: dodgerblue;
+    background-color: rgb(24, 216, 40);
     color: white;
   }
 
-  .pagination a:hover:not(.active) {background-color: #ddd;}
+  .pagination a:hover:not(.active) {background-color: rgb(16, 141, 26); color: white;}
+
+  .productsMain h1 {
+    font-size: 25px;
+    color: white;
+    font-family: 'Caveat', cursive;
+  }

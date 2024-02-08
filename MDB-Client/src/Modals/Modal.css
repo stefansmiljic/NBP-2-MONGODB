@@ -150,3 +150,40 @@
   color: #37af33;
     font-size: 25px;
 }
+
+.editUserDiv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.editUserDiv input {
+    border: 2px solid #37af33;
+    color: #383838;
+    border-radius: 15px;
+    height: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    text-align: center;
+    width: 300px;
+}
+
+.editUserDiv input[type='button'] {
+  background-color: transparent;
+  cursor: pointer;
+  width: 318px;
+}
+
+.editUserDiv input[type='button']:hover {
+    background-color: #37af33;
+    color: white;
+    transition: 0.15s;
+}
+
+.editUserDiv h1 {
+  color: #37af33;
+}

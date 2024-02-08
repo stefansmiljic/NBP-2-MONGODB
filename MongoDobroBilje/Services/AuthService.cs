@@ -23,6 +23,9 @@ public class AuthService
     public async Task<Korisnik> GetKorisnikAsync(string username) =>
         await _korisniciCollection.Find(x=>x.Username == username).FirstOrDefaultAsync();
 
+    public async Task<Korisnik> GetKorisnikByIdAsync(string id) =>
+        await _korisniciCollection.Find(x=>x.Id == id).FirstOrDefaultAsync();
+
     public async Task CreateKorisnikAsync(Korisnik newKorisnik) =>
         await _korisniciCollection.InsertOneAsync(newKorisnik);
 

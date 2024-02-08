@@ -33,9 +33,13 @@ public class ProizvodiService
         return proizvodi;
     }
 
-    public async Task<int> GetNumberOfProducts()
+    public async Task<int> GetNumberOfProducts(int type)
     {
-        var number = await _proizvodiCollection.Find(_ => true).ToListAsync();
+        var number = new List<Proizvod>();
+        if(type == -1)
+            number = await _proizvodiCollection.Find(_ => true).ToListAsync();
+        else
+            number = await _proizvodiCollection.Find(x => x.TipProizvoda == (TipProizvoda)type).ToListAsync();
         return number.Count;
     }
 
