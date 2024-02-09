@@ -7,8 +7,11 @@ function Cart({updateFlag, setUpdateFlag}) {
     const [korpa, setKorpa] = useState([]);
     const [korpaProizvodi, setKorpaProizvodi] = useState([]);
     const [deleteFlag, setDeleteFlag] = useState(false);
+    //const [token, setToken] = useState(null);
 
     var username = sessionStorage.getItem("username");
+    var token = null;
+    token = sessionStorage.getItem("token");
 
       async function getKorpa() {
         try {
@@ -30,11 +33,15 @@ function Cart({updateFlag, setUpdateFlag}) {
         }
       }
       useEffect(() => {
-        getKorpa().then((data) => {
-            setKorpa(data);
-            setKorpaProizvodi(data.proizvodiIds);
-        });
-      }, [updateFlag]);
+        if(username != null) {
+            getKorpa().then((data) => {
+                setKorpa(data);
+                setKorpaProizvodi(data.proizvodiIds);
+            });
+        }
+      }, [updateFlag, username]);
+
+      //console.log("Iz carta: " + username);
 
       function handleRefresh() {
         setUpdateFlag(prevUpdateFlag => !prevUpdateFlag);

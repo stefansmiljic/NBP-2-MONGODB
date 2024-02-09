@@ -4,45 +4,28 @@ import Backdrop from "./Backdrop";
 import React, { useState, useEffect } from 'react';
 
 function AboutUserModal() {
-    const [user, setUser] = useState([]);
     var token = sessionStorage.getItem("token");
-
-    async function getUserByToken() {
-        try {
-            const data = await fetch("http://localhost:5099/api/Auth/GetUserByToken?token=" + token, {
-                method: "GET",
-                mode: 'cors',
-            });
-    
-            if (!data.ok) {
-                throw new Error(`HTTP error! Status: ${data.status}`);
-            }
-    
-            const returnData = await data.json();
-            return returnData;
-        } catch (error) {
-            console.error("Greška prilikom dohvatanja podataka:", error);
-            throw error;
-        }
-    }
-
-    useEffect(() => {
-        getUserByToken().then((data) => {
-            setUser(data);
-            sessionStorage.setItem("user", data);
-        });
-      }, []);
-
-      console.log("Iz Abouta: " + token);
+    var niz = JSON.parse(sessionStorage.getItem("poseceniProizvodi"));
+    console.log(token);
 
     return (
         <div className="modal">
+            {token != null ? ( 
             <div className="aboutDiv">
                 <h1>О мени</h1>
-                <label>{user.ime}</label>
-                <label>{user.prezime}</label>
-                <label>{user.username}</label>
-                <label>{user.email}</label>
+                <label>{sessionStorage.getItem("ime")}</label>
+                <label>{sessionStorage.getItem("prezime")}</label>
+                <label>{sessionStorage.getItem("username")}</label>
+                <label>{sessionStorage.getItem("email")}</label>
+            </div>
+            ): {}} 
+            <div className="poseceniProizvodi">
+            <label className="poseceniNaslov">Ваши најскорије посећени производи:</label>
+            {niz.map(p => {
+                return (
+                <label>{p}</label>
+                )
+            })}
             </div>
         </div>
     );

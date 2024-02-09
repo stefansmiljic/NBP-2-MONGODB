@@ -1,6 +1,6 @@
 .kreirajProizvod {
     margin-top: 25px;
-    height: 360px;
+    height: 400px;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -55,7 +55,7 @@
     padding: 15px 15px 15px 15px;
     border: 1px solid #37af33;
     border-radius: 20px;
-    height: 360px;
+    height: 400px;
     justify-content: center;
     margin-left: 10px;
     margin-right: 10px;
@@ -88,7 +88,7 @@
     padding: 15px 15px 15px 15px;
     border: 1px solid #37af33;
     border-radius: 20px;    
-    height: 360px;
+    height: 400px;
     justify-content: center;
     margin-left: 10px;
     margin-right: 10px;

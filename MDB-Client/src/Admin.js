@@ -14,7 +14,7 @@ function Admin(){
                 <AdminDelete></AdminDelete>
                 <AdminEdit></AdminEdit>
             </div>
-            <a href="http://localhost:3000/" className="back-button">Повратак</a>
+            <a href="http://localhost:3000/" className="back-button"><ion-icon name="home"></ion-icon> Почетна страница</a>
         </div>
     )
 }

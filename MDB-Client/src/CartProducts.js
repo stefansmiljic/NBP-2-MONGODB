@@ -27,11 +27,14 @@ export default function CartProducts({handleRefresh, deleteFlag}) {
             throw error;
         }
       }
+      if(username != null){
         getKorpa().then((data) => {
-            setKorpaProizvodi(data.proizvodiIds);
-        });
-      }, [deleteFlag]);
+                setKorpaProizvodi(data.proizvodiIds);
+            }
+        )};
+      }, [deleteFlag, username]);
 
+      //console.log("Iz Cart products: " + typeof(username));
       
 
     return (

@@ -67,13 +67,14 @@ public class KupovinaController : ControllerBase
     public async Task<ActionResult> DodajPosecenProizvod(string username, string proizvodId)
     {
         var korisnik = await _authService.GetKorisnikAsync(username);
+        var proizvod = await _proizvodiService.GetAsync(proizvodId);
         if(korisnik.NajskorijePoseceniProizvodi[4] is null or "")
         {
             for(int i=0; i<5; i++)
             {
                 if(korisnik.NajskorijePoseceniProizvodi[i] is null or "")
                 {
-                    korisnik.NajskorijePoseceniProizvodi[i] = proizvodId;
+                    korisnik.NajskorijePoseceniProizvodi[i] = proizvod.ImeProizvoda;
                     break;
                 }
             }
@@ -84,7 +85,7 @@ public class KupovinaController : ControllerBase
             {
                 korisnik.NajskorijePoseceniProizvodi[i] = korisnik.NajskorijePoseceniProizvodi[i+1];
             }
-            korisnik.NajskorijePoseceniProizvodi[4] = proizvodId;
+            korisnik.NajskorijePoseceniProizvodi[4] = proizvod.ImeProizvoda;
         }
         await _authService.UpdateKorisnikAsync(username, korisnik);
         return Ok();

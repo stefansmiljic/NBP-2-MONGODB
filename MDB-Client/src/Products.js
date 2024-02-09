@@ -1,7 +1,7 @@
 import './Products.css';
 import { useEffect, useState } from 'react';
 
-function Products({handleRefresh, productTypeFlag}) {
+function Products({handleRefresh, productTypeFlag, openNLModalHandler, openProductModalHandler}) {
     const [proizvodi, setProizvodi] = useState([]);
     const [pagesNumber, setPagesNumber] = useState([]);
     const [page, setPage] = useState(1);
@@ -64,16 +64,23 @@ function Products({handleRefresh, productTypeFlag}) {
         }
       }
 
-      const handleAddProductToCart = pId => async () => {
-        await fetch(
-            "http://localhost:5099/api/Kupovina/DodajProizvodUKorpu?username=" + username + "&proizvodId=" + pId + "&count=" + 1,
-            { method: "PUT" }
-            );
-            if (typeof handleRefresh === 'function') {
-                handleRefresh();
-              } else {
-                console.error('setDeleteFlag is not a function' + typeof(setDeleteFlag));
-              }
+      console.log("Products: " + username);
+      const handleAddProductToCart = pId => async (event) => {
+        event.stopPropagation();
+        if(username != null) {
+            await fetch(
+                "http://localhost:5099/api/Kupovina/DodajProizvodUKorpu?username=" + username + "&proizvodId=" + pId + "&count=" + 1,
+                { method: "PUT" }
+                );
+                if (typeof handleRefresh === 'function') {
+                    handleRefresh();
+                } else {
+                    console.error('setDeleteFlag is not a function' + typeof(setDeleteFlag));
+                }
+        }
+        else {
+            openNLModalHandler();
+        }
     };
 
     const postaviStranicu = (stranica) => () => {
@@ -88,12 +95,18 @@ function Products({handleRefresh, productTypeFlag}) {
         console.log("Stranica: " + stranica);
     }
 
+    const postaviProizvod = (product) => async () => {
+        //localStorage.setItem("product", product);
+        openProductModalHandler(product);
+        console.log(product);
+    }
+
     return (
         <div className="productsMain">
             <div className='productsSubDiv'>
             {productTypeFlag != -1 ? (proizvodi.filter(p=>p.tipProizvoda == productTypeFlag).map((proizvod, index) => {
                 return (
-                    <div className="productDiv" key={index}>
+                    <div className="productDiv" key={index} onClick={postaviProizvod(proizvod)}>
                         <img src={proizvod.urlSlike} className="productImage"/>
                         <label>{proizvod.imeProizvoda}</label>
                         <label>Цена: <b>{proizvod.cena} дин.</b></label>
@@ -101,7 +114,7 @@ function Products({handleRefresh, productTypeFlag}) {
                     </div>)
             })) : (proizvodi.map((proizvod, index) => {
                 return (
-                    <div className="productDiv" key={index}>
+                    <div className="productDiv" key={index} onClick={postaviProizvod(proizvod)}>
                         <img src={proizvod.urlSlike} className="productImage"/>
                         <label>{proizvod.imeProizvoda}</label>
                         <label>Цена: <b>{proizvod.cena} дин.</b></label>

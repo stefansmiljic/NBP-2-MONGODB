@@ -5,13 +5,13 @@
     padding: 1rem;
     text-align: center;
     width: 30rem;
-    height: 400px;
+    /*height: 400px;*/
     z-index: 10;
     position: fixed;
     top: 20vh;
     left: calc(50% - 15rem);
   }
-  
+
   .backdrop {
     position: fixed;
     z-index: 1;
@@ -187,4 +187,89 @@
 
 .editUserDiv h1 {
   color: #37af33;
+}
+
+.poseceniProizvodi {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.poseceniProizvodi .poseceniNaslov {
+  font-weight: bold;
+}
+
+.nlmodal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 150px;
+}
+
+.nlmodal a {
+  color: green;
+  cursor: pointer;
+}
+
+.nlmodal a:hover {
+  color: rgb(0, 87, 0);
+  transition: 0.2s;
+}
+
+.nlInfo {
+  color: green;
+}
+
+.logInDiv h1 {
+    color: #37af33;
+    font-size: 25px;
+}
+
+.aboutProduct {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.aboutProductImg {
+  width: 250px;
+  border-radius: 20px;
+}
+
+.modalAbout {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  background-color: white;
+  padding: 1rem;
+  text-align: center;
+  width: 60rem;
+  /*height: 400px;*/
+  z-index: 10;
+  position: fixed;
+  top: 25vh;
+  height: 400px;
+  left: calc(50% - 30rem);
+  display: flex;
+  justify-content: center;
+  background-image: url('../assets/aboutBg.png');
+  background-size: cover;
+}
+
+.aboutProduct01 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #37af33;
+}
+
+.aboutProduct02 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutProduct02 label {
+  text-align: left;
 }

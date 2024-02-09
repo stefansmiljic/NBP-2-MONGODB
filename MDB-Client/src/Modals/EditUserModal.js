@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import './Modal.css';
+import $ from 'jquery';
 
 function EditUserModal(props) {
     const [ime, setIme] = useState("");
     const [prezime, setPrezime] = useState("");
-    const [username, setUsername] = useState("");
     const [lozinka, setLozinka] = useState("");
     const [email, setEmail] = useState("");
-    const [user, setUser] = useState([]);
 
-    var token = sessionStorage.getItem("token");
+    var niz = JSON.parse(sessionStorage.getItem("poseceniProizvodi"));
+
+  console.log("poseceni: " + sessionStorage.getItem("poseceniProizvodi"));
+  console.log(niz[1]);
 
     const handleImeChange = (value) => {
         setIme(value);
@@ -17,10 +19,6 @@ function EditUserModal(props) {
 
     const handlePrezimeChange = (value) => {
         setPrezime(value);
-    };
-
-    const handleUsernameChange = (value) => {
-        setUsername(value);
     };
 
     const handleLozinkaChange = (value) => {
@@ -35,41 +33,45 @@ function EditUserModal(props) {
         props.onCancel();
       }
 
-      async function getUserByToken() {
-        try {
-            const data = await fetch("http://localhost:5099/api/Auth/GetUserByToken?token=" + token, {
-                method: "GET",
-                mode: 'cors',
-            });
+      const handleUpdate = () => {
+        var model = {
+            id: sessionStorage.getItem("id"),
+            ime: ime != "" ? ime : sessionStorage.getItem("ime"),
+            prezime: prezime != "" ? prezime : sessionStorage.getItem("prezime"),
+            password: lozinka,
+            email: email != "" ? email : sessionStorage.getItem("email"),
+            isAdmin: sessionStorage.getItem("isAdmin") == "false" ? false : true,
+            najskorijePoseceniProizvodi: JSON.parse(sessionStorage.getItem("poseceniProizvodi"))
+        };
     
-            if (!data.ok) {
-                throw new Error(`HTTP error! Status: ${data.status}`);
+        $.ajax({
+            type: "PUT",
+            data: JSON.stringify(model),
+            url: "http://localhost:5099/api/Auth/UpdateUser?username=" + sessionStorage.getItem("username"),
+            contentType: "application/json",
+            success: function(res) {
+                console.log("Success: ", res);
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.error("Error: ", errorThrown);
+                console.log("Response Text: ", xhr.responseText); // Log the response text for more details
             }
-    
-            const returnData = await data.json();
-            return returnData;
-        } catch (error) {
-            console.error("Greška prilikom dohvatanja podataka:", error);
-            throw error;
-        }
-    }
-
-    useEffect(() => {
-        getUserByToken().then((data) => {
-            setUser(data);
-        })
-      }, []);
+        });
+        sessionStorage.setItem("ime", model.ime);
+        sessionStorage.setItem("prezime", model.prezime);
+        sessionStorage.setItem("email", model.email);
+        //window.location.reload();
+    };
 
     return (
         <div className="modal">
             <div className="editUserDiv">
                 <h1>Измени податке</h1>
-                <input type="text" placeholder="Име" defaultValue={user.ime} onChange={(e) => handleImeChange(e.target.value)}></input>
-                <input type="text" placeholder="Презиме" defaultValue={user.prezime} onChange={(e) => handlePrezimeChange(e.target.value)}></input>
-                {/*<input type="text" placeholder="Корисничко име" defaultValue={user.username} onChange={(e) => handleUsernameChange(e.target.value)}></input>*/}
+                <input type="text" placeholder="Име" defaultValue={sessionStorage.getItem("ime")} onChange={(e) => handleImeChange(e.target.value)}></input>
+                <input type="text" placeholder="Презиме" defaultValue={sessionStorage.getItem("prezime")} onChange={(e) => handlePrezimeChange(e.target.value)}></input>
                 <input type="password" placeholder="Лозинка" onChange={(e) => handleLozinkaChange(e.target.value)}></input>
-                <input type="email" placeholder="Имејл" defaultValue={user.email} onChange={(e) => handleEmailChange(e.target.value)}></input>
-                <input type="button" value={"Сачувај измене"} ></input>
+                <input type="email" placeholder="Имејл" defaultValue={sessionStorage.getItem("email")} onChange={(e) => handleEmailChange(e.target.value)}></input>
+                <input type="button" value={"Сачувај измене"} onClick={handleUpdate}></input>
             </div>
         </div>
     );

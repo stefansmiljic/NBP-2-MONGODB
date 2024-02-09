@@ -51,7 +51,7 @@ function Navbar() {
 
   const handleLogOut = async () => {
     await fetch(
-        "http://localhost:5099/api/Auth/Logout?token=" + token,
+        "http://localhost:5099/api/Auth/Logout?token=" + sessionStorage.getItem("token"),
         { method: "DELETE" }
     );
     sessionStorage.removeItem("token");
@@ -88,6 +88,7 @@ function Navbar() {
           </li>
         </ul>
         {LogInModalIsOpen && <LogInModal onOk={closeLogInModalHandler}/>}
+        {LogInModalIsOpen && <LogInModal onCancel={closeLogInModalHandler}/>}
         {LogInModalIsOpen && <Backdrop onClick={closeLogInModalHandler}/>}
         {AboutUserModalIsOpen && <AboutUserModal onOk={closeLogInModalHandler}/>}
         {AboutUserModalIsOpen && <Backdrop onClick={closeAboutUserModalHandler}/>}

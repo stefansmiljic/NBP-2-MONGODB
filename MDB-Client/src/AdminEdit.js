@@ -11,7 +11,9 @@ const [proizvodZaUpdate, setProizvodZaUpdate] = useState([]);
 const [noviLink, setNoviLink] = useState("");
 const [novoIme, setNovoIme] = useState("");
 const [novaCena, setNovaCena] = useState(0);
-const [noviTip, setNoviTip] = useState(-1)
+const [noviTip, setNoviTip] = useState(-1);
+const [noviInfo, setNoviInfo] = useState("");
+const [noviBP, setNoviBP] = useState(0);
 
     //edit
 const handleUpdateProductIdChange = (value) => {
@@ -23,6 +25,8 @@ const handleUpdateProductIdChange = (value) => {
                 setNovaCena(proizvod.cena)
                 setNovoIme(proizvod.imeProizvoda)
                 setNoviTip(proizvod.tipProizvoda)
+                setNoviInfo(proizvod.info)
+                setNoviBP(proizvod.brojPosecenosti)
           }
         })
 }
@@ -42,6 +46,10 @@ const handleNoviLinkChange = (value) => {
 const handleUpdatedTipChange = (value) => {
     setNoviTip(value.value);
 };
+
+const handleNoviInfoChange = (value) => {
+    setNoviInfo(value);
+}
 
 const options = [
     { value: '0', label: 'Чај' },
@@ -83,6 +91,8 @@ const handleUpdate = () => {
         imeProizvoda: novoIme,
         urlSlike: noviLink,
         cena: novaCena,
+        info: noviInfo,
+        brojPosecenosti: noviBP,
         tipProizvoda: Number(noviTip)
     };
 
@@ -102,8 +112,9 @@ const handleUpdate = () => {
     window.location.reload();
 };
 
+console.log("Info: " + noviInfo);
+
 return (
-    <div className="main">
         <div className='urediProizvod'>
             <h1>Изаберите производ за измене</h1>
             <Select 
@@ -115,6 +126,7 @@ return (
             <input className='updInputName' type="text" placeholder="Унесите назив" onChange={(e) => handleNovoImeChange(e.target.value)} value={novoIme}></input>
             <input type="url" placeholder="Линк слике" onChange={(e) => handleNoviLinkChange(e.target.value)} value={noviLink}></input>
             <input type="number" placeholder="Цена производа" onChange={(e) => handleNovaCenaChange(e.target.value)} value={novaCena}></input>
+            <input className='updInputName' type="text" placeholder="О производу" onChange={(e) => handleNoviInfoChange(e.target.value)} value={noviInfo}></input>
             <Select
                 className='selectTip' 
                 options={options}
@@ -127,7 +139,6 @@ return (
             ) : {}
         } 
         </div>
-    </div>
 );
 }
 

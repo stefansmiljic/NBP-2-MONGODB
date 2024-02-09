@@ -12,15 +12,20 @@
     background-color: #37af33;
     color: white;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 50px;
     text-decoration: none;
     padding: 5,10,5,10;
-    width: 300px;
-    height: 30px;
+    width: 250px;
+    height: 40px;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 17px;
+}
+
+.back-button ion-icon {
+    margin-right: 10px;
 }
 
 .back-button:hover{
@@ -31,6 +36,7 @@
 
 .components {
     display: flex;
+    height: fit-content;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;

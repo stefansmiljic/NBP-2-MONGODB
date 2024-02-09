@@ -51,7 +51,6 @@ function AdminDelete() {
     };
 
     return (
-        <div className="main">
             <div className='obrisiProizvod'>
                 <h1>Обриши производ</h1>
                 <Select 
@@ -60,7 +59,6 @@ function AdminDelete() {
                 />
                 <input type='button' value={"Обриши"} onClick={handleDeleteProduct}></input>
             </div>
-        </div>
     );
 }
 

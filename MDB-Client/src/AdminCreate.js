@@ -9,6 +9,7 @@ const [naziv, setNaziv] = useState("");
 const [linkSlike, setLinkSlike] = useState("");
 const [cena, setCena] = useState(0);
 const [tip, setTip] = useState(0);
+const [info, setInfo] = useState("");
 
     //create
 const handleNazivChange = (value) => {
@@ -27,6 +28,10 @@ const handleTipChange = (value) => {
     setTip(value.value);
 };
 
+const handleInfoChange = (value) => {
+    setInfo(value);
+};
+
 const options = [
     { value: '0', label: 'Чај' },
     { value: '1', label: 'Зачин' },
@@ -38,6 +43,8 @@ const handleCreate = () => {
         imeProizvoda: naziv,
         urlSlike: linkSlike,
         cena: cena,
+        info: info,
+        brojPosecenosti: 0,
         tipProizvoda: Number(tip)
     };
 
@@ -58,12 +65,12 @@ const handleCreate = () => {
 };
 
 return (
-    <div className="main">
         <div className='kreirajProizvod'>
             <h1>Креирај нови производ</h1>
             <input type="text" placeholder="Унесите назив" onChange={(e) => handleNazivChange(e.target.value)}></input>
             <input type="url" placeholder="Линк слике" onChange={(e) => handleLinkChange(e.target.value)}></input>
             <input type="number" placeholder="Цена производа" onChange={(e) => handleCenaChange(e.target.value)}></input>
+            <input type="text" placeholder="О производу" onChange={(e) => handleInfoChange(e.target.value)}></input>
             <Select
                 className='selectTip' 
                 options={options}
@@ -72,7 +79,6 @@ return (
             />
             <input type='button' value={"Креирај"} onClick={handleCreate}></input>
         </div>
-    </div>
 );
 }
 

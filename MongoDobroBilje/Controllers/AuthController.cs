@@ -54,8 +54,12 @@ public class AuthController : ControllerBase
                 Token = token.TokenString,
                 User = new {
                     id = user.Id,
+                    ime = user.Ime,
+                    prezime = user.Prezime,
+                    email = user.Email,
                     username = user.Username,
-                    isAdmin = user.IsAdmin
+                    isAdmin = user.IsAdmin,
+                    najskorijePoseceniProizvodi = user.NajskorijePoseceniProizvodi
                 }
             };
 
@@ -104,19 +108,19 @@ public class AuthController : ControllerBase
     }
 
     [HttpPut("UpdateUser")]
-    public async Task<IActionResult> UpdateKorisnik(string id, Korisnik updatedKorisnik)
+    public async Task<IActionResult> UpdateKorisnik(string username, Korisnik updatedKorisnik)
     {
-        var korisnik = await _authService.GetKorisnikByIdAsync(id);
+        var korisnik = await _authService.GetKorisnikAsync(username);
         if(korisnik is null)
         {
             return NotFound();
         }
 
-        updatedKorisnik.Id = korisnik.Id;
+        updatedKorisnik.Username = korisnik.Username;
         var passwordHash = Argon2.Hash(updatedKorisnik.Password);
         updatedKorisnik.Password = passwordHash;
 
-        await _authService.UpdateKorisnikAsync(id, updatedKorisnik);
+        await _authService.UpdateKorisnikAsync(username, updatedKorisnik);
 
         return NoContent();
     }
