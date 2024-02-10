@@ -57,6 +57,37 @@ function RegisterModal(props) {
       const uncorrectRepeatPassword = () => toast("Лозинке се не поклапају!");
       const fillAllFields = () => toast("Нисте попунили сва поља!");
 
+      const handleLogIn = async (username, password) => {
+        if(username != "" && password != "") {
+          var formData = await fetch("http://localhost:5099/api/Auth/Login?username=" + username + "&password=" + password, {
+              method: 'post',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData)
+            }).then(response => {
+              return response.json();
+            }).then(jsonResponse => {
+              console.log(jsonResponse.user.najskorijePoseceniProizvodi);
+              sessionStorage.setItem("token", jsonResponse.token);
+              sessionStorage.setItem("username", jsonResponse.user.username);
+              sessionStorage.setItem("isAdmin", jsonResponse.user.isAdmin);
+              sessionStorage.setItem("ime", jsonResponse.user.ime);
+              sessionStorage.setItem("prezime", jsonResponse.user.prezime);
+              sessionStorage.setItem("email", jsonResponse.user.email);
+              sessionStorage.setItem("id", jsonResponse.user.id);
+              sessionStorage.setItem("poseceniProizvodi", JSON.stringify(jsonResponse.user.najskorijePoseceniProizvodi));
+              window.location.reload();
+            }).catch (error => {
+              console.log(error)
+            })
+        }
+        else if(username == "" || password == ""){
+          fillAllFields();
+        }
+      };
+
     const handleRegister = () => {
         if((lozinka == repeatLozinka) && (ime != "") && (prezime != "") && (username != "") && (lozinka != "") && (repeatLozinka != "") && (email != "")) {
             var model = {
@@ -77,13 +108,13 @@ function RegisterModal(props) {
                 contentType: "application/json",
                 success: function(res) {
                     console.log("Success: ", res);
+                    handleLogIn(username, lozinka);
                 },
                 error: function(xhr, textStatus, errorThrown) {
                     console.error("Error: ", errorThrown);
-                    console.log("Response Text: ", xhr.responseText); // Log the response text for more details
+                    console.log("Response Text: ", xhr.responseText); 
                 }
             });
-            window.location.reload();
         }
         else if(((ime != "") && (prezime != "") && (username != "") && (lozinka != "") && (repeatLozinka != "") && (email != "")) == false) {
             fillAllFields();
