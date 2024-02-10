@@ -15,6 +15,9 @@ function Navbar() {
   const [EditUserModalIsOpen, setEditUserModalIsOpen] = useState(false);
   const [token, setToken] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [user, setUser] = useState([]);
+
+  var username = sessionStorage.getItem("username");
 
   //var token = localStorage.getItem("token");
   console.log("Token: " + token);
@@ -23,6 +26,14 @@ function Navbar() {
     console.log("JELI ADMIN??: " + typeof(isAdmin));
     setToken(sessionStorage.getItem("token"));
   }, [token, isAdmin]);
+
+  useEffect(() => {
+    if(username != null) {
+      getUser(username).then((data) => {
+        setUser(data);
+      })
+    }
+  }, [username]);
   
 
   function openLogInModalHandler() {
@@ -61,6 +72,18 @@ function Navbar() {
     window.location.reload();
   };
 
+  const getUser = async (username) => {
+    const user = await fetch(
+      "http://localhost:5099/api/Auth/GetUserByUsername?username=" + username
+    );
+  
+    if (!user.ok) {
+      return [];
+    }
+    
+    return user.json();
+  }
+
   return (
       <div className='navbar'>
         <div>
@@ -68,7 +91,7 @@ function Navbar() {
         </div>
         <ul className='navbarList'>
           {isAdmin == "true" && <li className='menuItem'><a href="/admin"><span className='menuIcon'><ion-icon name="settings"></ion-icon></span>Админ</a></li>}
-          <li className='photoLi'><img className='userPhoto'/></li>
+          {username ? (<li className='photoLi'><img className='userPhoto' src={'data:image/jpeg;base64, ' + btoa(user.slika)}/></li>) : (<label></label>)}
           <li hidden={token != null} className='menuItem'><a href="#" onClick={openLogInModalHandler}><span className='menuIcon'><ion-icon name="person"></ion-icon></span>Улогуј се</a></li>
           <li hidden={token == null} className='menuItem'><a href="#"><span className='menuIcon'><ion-icon name="person"></ion-icon></span>Мој налог<span className='menuIcon'><ion-icon name="caret-down-outline"></ion-icon></span></a>
           <ul className='dropdown'>
@@ -94,6 +117,7 @@ function Navbar() {
         {AboutUserModalIsOpen && <Backdrop onClick={closeAboutUserModalHandler}/>}
         {EditUserModalIsOpen && <EditUserModal onOk={closeEditUserModalHandler}/>}
         {EditUserModalIsOpen && <Backdrop onClick={closeEditUserModalHandler}/>}
+        {EditUserModalIsOpen && <EditUserModal onCancel={closeEditUserModalHandler}/>}
       </div>
   );
 }

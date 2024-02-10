@@ -273,3 +273,22 @@
 .aboutProduct02 label {
   text-align: left;
 }
+
+.xproduct {
+  align-self: first baseline;
+  height: 25px;
+  width: 25px;
+  padding: 2px 2px 2px 2px;
+  clip-path: circle();
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.xproduct:hover {
+  background-color: rgb(24, 204, 48);
+  border-radius: 20px;
+  transition: 0.2s;
+  color: white;
+}

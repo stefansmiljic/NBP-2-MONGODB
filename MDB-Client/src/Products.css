@@ -27,6 +27,18 @@
     justify-content: center;
 }
 
+.productsFilteredDiv{
+    overflow-y: scroll;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.315), transparent);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inputFilterProduct:focus {
+    outline: none;
+}
+
 .productDiv {
     display: flex;
     align-items: center;
@@ -97,3 +109,44 @@
     color: white;
     font-family: 'Caveat', cursive;
   }
+  
+  .filtersDiv {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filtersDiv a ion-icon {
+    margin-right: 3px;
+  }
+
+  .clearProductTypeFilter {
+    margin-left: 5px;
+    background-color: rgb(16, 119, 22);
+    color: white;
+    text-decoration: none;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+  }
+
+  .clearProductTypeFilter:hover {
+    background-color: rgb(10, 168, 10);
+    transition: 0.2s;
+  }
+
+  .inputFilterProduct {
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    width: 240px;
+}

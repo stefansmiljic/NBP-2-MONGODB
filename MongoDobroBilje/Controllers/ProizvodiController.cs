@@ -9,9 +9,13 @@ namespace MongoDobroBilje.Controllers;
 public class ProizvodiController : ControllerBase
 {
     private readonly ProizvodiService _proizvodiService;
+    private readonly AuthService _authService;
 
-    public ProizvodiController(ProizvodiService proizvodiService) =>
+    public ProizvodiController(ProizvodiService proizvodiService, AuthService authService) {
         _proizvodiService = proizvodiService;
+        _authService = authService;
+    }
+
 
     [HttpGet("GetProducts")]
     public async Task<List<Proizvod>> Get() =>
@@ -85,5 +89,24 @@ public class ProizvodiController : ControllerBase
         for(int i=0;i<numberOfProducts;i++)
             niz[i] = i;
         return Ok(niz);
+    }
+
+    [HttpPut("ProizvodPosecen")]
+    public async Task<IActionResult> ProizvodPosecen(string id, string username)
+    {
+        var proizvod = await _proizvodiService.GetAsync(id);
+        var korisnik = await _authService.GetKorisnikAsync(username);
+        if(proizvod is null)
+        {
+            return NotFound();
+        }
+        if(korisnik.NajskorijePoseceniProizvodi.Contains(proizvod.ImeProizvoda))
+        {
+            return NoContent();
+        }
+        proizvod.BrojPosecenosti++;
+        await _proizvodiService.UpdateAsync(id, proizvod);
+
+        return NoContent();
     }
 }

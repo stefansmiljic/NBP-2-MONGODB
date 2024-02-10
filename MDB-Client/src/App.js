@@ -65,7 +65,7 @@ function App() {
         {NLModalIsOpen && <NotLoggedModal onOk={closeNLModalHandler}/>}
         {NLModalIsOpen && <NotLoggedModal onCancel={closeNLModalHandler}/>}
         {NLModalIsOpen && <Backdrop onClick={closeNLModalHandler}/>}
-        {ProductModalIsOpen && <ProductModal product={product}/>}
+        {ProductModalIsOpen && <ProductModal onCancel={closeProductModalHandler} product={product}/>}
         {ProductModalIsOpen && <Backdrop onClick={closeProductModalHandler}/>}
     </div>
   );

@@ -2,6 +2,8 @@ import "./Modal.css"
 import RegisterModal from './RegisterModal';
 import Backdrop from "./Backdrop";
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LogInModal(props) {
     const [RegisterModalIsOpen, setRegisterModalIsOpen] = useState(false);
@@ -29,8 +31,12 @@ function LogInModal(props) {
     function cancelHandler() {
       props.onCancel();
     }
+
+    const fillAllFields = () => toast("Нисте попунили сва поља!");
+    const uncorrectCredentials = () => toast("Унели сте нетачне податке!");
     
     const handleLogIn = async () => {
+      if(username != "" && password != "") {
         var formData = await fetch("http://localhost:5099/api/Auth/Login?username=" + username + "&password=" + password, {
             method: 'post',
             headers: {
@@ -50,10 +56,16 @@ function LogInModal(props) {
             sessionStorage.setItem("email", jsonResponse.user.email);
             sessionStorage.setItem("id", jsonResponse.user.id);
             sessionStorage.setItem("poseceniProizvodi", JSON.stringify(jsonResponse.user.najskorijePoseceniProizvodi));
+            
+            window.location.reload();
           }).catch (error => {
             console.log(error)
+            uncorrectCredentials();
           })
-        window.location.reload();
+      }
+      else if(username == "" || password == ""){
+        fillAllFields();
+      }
     };
 
     return (
@@ -63,6 +75,7 @@ function LogInModal(props) {
                     <ion-icon name="close"></ion-icon>
                 </div>
                 <h1>Пријави се</h1>
+                <ToastContainer className={'Toastify__toast-container--bottom-center'}/>
                 <input type="text" placeholder="Корисничко име" onChange={(e) => handleUsernameChange(e.target.value)}></input>
                 <input type="password" placeholder="Лозинка" onChange={(e) => handlePasswordChange(e.target.value)}></input>
                 <input type="button" value={"Пријави се"} onClick={handleLogIn}></input>

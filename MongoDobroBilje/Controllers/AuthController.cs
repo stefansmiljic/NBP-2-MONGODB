@@ -107,20 +107,44 @@ public class AuthController : ControllerBase
         return BadRequest("Greska!");
     }
 
+    [HttpGet("GetUserByUsername")]
+    public async Task<ActionResult<Korisnik>> GetUserByUsername(string username)
+    {
+        var korisnik = await _authService.GetKorisnikAsync(username);
+        if(korisnik!=null)
+            return Ok(korisnik);
+        return BadRequest("Greska!");
+    }
+
     [HttpPut("UpdateUser")]
-    public async Task<IActionResult> UpdateKorisnik(string username, Korisnik updatedKorisnik)
+    public async Task<IActionResult> UpdateKorisnik(string username, string password, Korisnik updatedKorisnik)
     {
         var korisnik = await _authService.GetKorisnikAsync(username);
         if(korisnik is null)
         {
             return NotFound();
         }
-
+        if(!Argon2.Verify(korisnik.Password, password))
+        {
+            return BadRequest("Унели сте нетачну стару лозинку!");
+        }
+        if(updatedKorisnik.Password == "")
+        {
+            updatedKorisnik.Username = korisnik.Username;
+            updatedKorisnik.Password = korisnik.Password;
+            await _authService.UpdateKorisnikAsync(username, updatedKorisnik);
+        }
+        else if(Argon2.Verify(korisnik.Password, updatedKorisnik.Password))
+        {
+            return BadRequest("Стара и нова лозинка се поклапају!");
+        }
+        else 
+        {
         updatedKorisnik.Username = korisnik.Username;
         var passwordHash = Argon2.Hash(updatedKorisnik.Password);
         updatedKorisnik.Password = passwordHash;
-
         await _authService.UpdateKorisnikAsync(username, updatedKorisnik);
+        }
 
         return NoContent();
     }

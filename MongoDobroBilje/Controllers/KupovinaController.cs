@@ -77,10 +77,21 @@ public class KupovinaController : ControllerBase
                     korisnik.NajskorijePoseceniProizvodi[i] = proizvod.ImeProizvoda;
                     break;
                 }
+                else if(korisnik.NajskorijePoseceniProizvodi[i] == proizvod.ImeProizvoda)
+                {
+                    return Ok();
+                }
             }
         }
         else
         {
+            for(int i=0; i<5; i++)
+            {
+                if(korisnik.NajskorijePoseceniProizvodi[i] == proizvod.ImeProizvoda)
+                {
+                    return Ok();
+                }
+            }
             for(int i=0; i<4; i++)
             {
                 korisnik.NajskorijePoseceniProizvodi[i] = korisnik.NajskorijePoseceniProizvodi[i+1];

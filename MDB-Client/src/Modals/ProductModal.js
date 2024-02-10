@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Modal.css';
 
-function ProductModal({product}) {
+function ProductModal({onCancel,product}) {
     console.log("ProductModal: " + product);
 
     return (
@@ -18,6 +18,9 @@ function ProductModal({product}) {
                     <h2 style={{color: '#37af33'}}>Више података о производу</h2>
                     <label>{product.info}</label>
                 </div>
+            </div>
+            <div className="xproduct" onClick={onCancel}>
+                    <ion-icon name="close"></ion-icon>
             </div>
         </div>
     );
