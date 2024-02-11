@@ -8,6 +8,7 @@ function Payment() {
     const [korpaProizvodi, setKorpaProizvodi] = useState([]);
     const [proizvodi, setProizvodi] = useState([]);
     const [duzinaKorpe, setDuzinaKorpe] = useState(0);
+    const [racun, setRacun] = useState(0);
 
     var username = localStorage.getItem("usernameForPay");
 
@@ -36,6 +37,7 @@ function Payment() {
                 setKorpa(data);
                 setKorpaProizvodi(data.proizvodiIds);
                 setDuzinaKorpe(data.proizvodiIds.length);
+                setRacun(data.ukupanRacun);
             });
         }
       }, [username]);
@@ -69,24 +71,30 @@ function Payment() {
       console.log(proizvodi)
 
       const paymentDone = () => toast("Куповина је успешно обављена!");
+      const emptyCart = () => toast("Ваша корпа је празна!");
 
       const isprazniKorpu = async () => {
-        await fetch(
-            "http://localhost:5099/api/Kupovina/IsprazniKorpu?username=" + username,
-            { method: "PUT" }
-        );
-        paymentDone();
-        
-        setTimeout(() => {
-            window.location.reload()
-        }, 5000)
+            if(racun != 0) {
+                await fetch(
+                    "http://localhost:5099/api/Kupovina/IsprazniKorpu?username=" + username,
+                    { method: "PUT" }
+                );
+                paymentDone();
+                
+                setTimeout(() => {
+                    window.location.reload()
+                }, 5000)
+            }
+            else {
+                emptyCart();
+            }
       }
 
     return (
         <div className="paymentMain">
+        <ToastContainer className={'Toastify__toast-container--bottom-center'}/>
             <div className="payOptions">
             <h1>Изаберите начин плаћања</h1>
-            <ToastContainer className={'Toastify__toast-container--bottom-center'}/>
             <section className="add-card page">
                 <form className="form">
                     <label for="name" className="label">

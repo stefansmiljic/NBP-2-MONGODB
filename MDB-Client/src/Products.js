@@ -17,7 +17,6 @@ function Products({handleRefresh, productTypeFlag, openNLModalHandler, openProdu
 
     var username = sessionStorage.getItem("username");
 
-    //console.log("Iz products: " + productTypeFlag);
 
     async function getAllProductsMain() {
         try {
@@ -67,7 +66,6 @@ function Products({handleRefresh, productTypeFlag, openNLModalHandler, openProdu
         useEffect(() => {
             getAllProducts().then((data) => {
                 setProizvodi(data);
-                //setPagesNumber(parseInt((data.length / 5) + ((data.length % 5) == 0 ? 0 : 1)));
             }).then(brojStranica(productTypeFlag))
         }, [productTypeFlag, page]);
 
@@ -97,7 +95,6 @@ function Products({handleRefresh, productTypeFlag, openNLModalHandler, openProdu
         }
       }
 
-      console.log("Products: " + username);
       const handleAddProductToCart = pId => async (event) => {
         event.stopPropagation();
         if(username != null) {
@@ -132,36 +129,25 @@ function Products({handleRefresh, productTypeFlag, openNLModalHandler, openProdu
             prevActivePage.classList.remove('active');
             activePageBtn.classList.add('active')
         }
-        console.log("Stranica: " + stranica);
     }
 
     const postaviProizvod = (product) => async () => {
-        //localStorage.setItem("product", product);
         openProductModalHandler(product);
         if(username != null) {
             proizvodPosecen(product.id, username);
             dodajPoseceniProizvod(username, product.id);
-            /*getUser(username).then((data) => {
-                sessionStorage.setItem("poseceniProizvodi", JSON.stringify(data.najskorijePoseceniProizvodi));
-                console.log(data.najskorijePoseceniProizvodi)
-            })*/
         }
-        console.log(product.id);
     }
 
     const handleInputChange = (e) => { 
         const searchTerm = e.target.value;
         setSearchItem(searchTerm)
     
-        // filter the items using the apiUsers state
         const filteredItems = apiProducts.filter((product) =>
             product.imeProizvoda.toLowerCase().includes(searchTerm.toLowerCase())
         );
     
         setFilteredProducts(filteredItems);
-        /*let duzina = parseInt((filteredItems.length / 5) + ((filteredItems.length % 5) == 0 ? 0 : 1));
-        var niz = filteredItems.slice(0, duzina-1);
-        setPagesNumber(niz);*/
       }
 
       const options = [

@@ -44,6 +44,7 @@ function AboutUserModal() {
       }, [username]);
 
       const noPassword = () => toast("Нисте унели лозинку!");
+      const pleaseWait = () => toast("Молимо сачекајте...");
 
       const handleDeleteAccount = async () => {
         if(password != "") {
@@ -51,15 +52,20 @@ function AboutUserModal() {
             "http://localhost:5099/api/Auth/DeleteAccount?username=" + sessionStorage.getItem("username") + "&password=" + password,
             { method: "DELETE" }
         );
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("username");
-        sessionStorage.removeItem("isAdmin");
-        sessionStorage.removeItem("ime");
-        sessionStorage.removeItem("prezime");
-        sessionStorage.removeItem("email");
-        sessionStorage.removeItem("id");
-        sessionStorage.removeItem("poseceniProizvodi");
-        window.location.reload();
+        pleaseWait();
+        setTimeout(() => {
+          sessionStorage.removeItem("token");
+          sessionStorage.removeItem("username");
+          sessionStorage.removeItem("isAdmin");
+          sessionStorage.removeItem("ime");
+          sessionStorage.removeItem("prezime");
+          sessionStorage.removeItem("email");
+          sessionStorage.removeItem("id");
+          sessionStorage.removeItem("poseceniProizvodi");
+        }, 1000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       }
       else {
         noPassword();

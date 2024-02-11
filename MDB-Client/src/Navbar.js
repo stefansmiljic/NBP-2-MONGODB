@@ -9,7 +9,6 @@ import EditUserModal from './Modals/EditUserModal';
 
 
 function Navbar() {
-  //const [token, setToken] = useState(null);
   const [LogInModalIsOpen, setLogInModalIsOpen] = useState(false);
   const [AboutUserModalIsOpen, setAboutUserModalIsOpen] = useState(false);
   const [EditUserModalIsOpen, setEditUserModalIsOpen] = useState(false);
@@ -19,11 +18,9 @@ function Navbar() {
 
   var username = sessionStorage.getItem("username");
 
-  //var token = localStorage.getItem("token");
   console.log("Token: " + token);
   useEffect(() =>{
     setIsAdmin(sessionStorage.getItem("isAdmin"));
-    console.log("JELI ADMIN??: " + typeof(isAdmin));
     setToken(sessionStorage.getItem("token"));
   }, [token, isAdmin]);
 
@@ -98,15 +95,6 @@ function Navbar() {
             <li><a href='#' onClick={openAboutUserModalHandler}>Моји подаци</a></li>
             <li><a href='#' onClick={openEditUserModalHandler}>Измени податке</a></li>
             <li><a href='#' onClick={handleLogOut}>Одјави се</a></li>
-          </ul>
-          </li>
-          <li className='menuItem'><a href="#"><span className='menuIcon'><ion-icon name="leaf"></ion-icon></span>Препарати<span className='menuIcon'><ion-icon name="caret-down-outline"></ion-icon></span></a></li>
-          <li className='menuItem'><a href="#"><span className='menuIcon'><ion-icon name="restaurant"></ion-icon></span>Зачини<span className='menuIcon'><ion-icon name="caret-down-outline"></ion-icon></span></a></li>
-          <li className='menuItem'><a href="#"><span className='menuIcon'><ion-icon name="cafe"></ion-icon></span>Чајеви<span className='menuIcon'><ion-icon name="caret-down-outline"></ion-icon></span></a>
-          <ul className='dropdown'>
-            <li><a href='#'>Нана</a></li>
-            <li><a href='#'>Хибискус</a></li>
-            <li><a href='#'>Камилица</a></li>
           </ul>
           </li>
         </ul>

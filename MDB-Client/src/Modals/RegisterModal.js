@@ -113,7 +113,8 @@ function RegisterModal(props) {
       username != "" &&
       lozinka != "" &&
       repeatLozinka != "" &&
-      email != ""
+      email != "" &&
+      slika != ""
     ) {
       var model = {
         ime: ime,
@@ -146,7 +147,8 @@ function RegisterModal(props) {
         username != "" &&
         lozinka != "" &&
         repeatLozinka != "" &&
-        email != "") == false
+        email != "" &&
+        slika != "") == false
     ) {
       fillAllFields();
     } else {
@@ -194,12 +196,12 @@ function RegisterModal(props) {
           placeholder="Имејл"
           onChange={(e) => handleEmailChange(e.target.value)}
         ></input>
+        <label style={{fontSize: '14px'}}>Профилна слика:</label>
         <input
           type="file"
           accept="image/*"
           className="uploadPhoto"
           onChange={(e) => uploadPhoto(e.target)}
-          //style={{ color: "white", justifyContent: "center", alignItems: 'center', display: 'flex'}}
           id="myFileInput"
         ></input>
         <input

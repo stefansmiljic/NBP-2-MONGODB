@@ -7,7 +7,6 @@ function Cart({updateFlag, setUpdateFlag}) {
     const [korpa, setKorpa] = useState([]);
     const [korpaProizvodi, setKorpaProizvodi] = useState([]);
     const [deleteFlag, setDeleteFlag] = useState(false);
-    //const [token, setToken] = useState(null);
 
     var username = sessionStorage.getItem("username");
     var token = null;
@@ -42,7 +41,6 @@ function Cart({updateFlag, setUpdateFlag}) {
         }
       }, [updateFlag, username]);
 
-      //console.log("Iz carta: " + username);
 
       function handleRefresh() {
         setUpdateFlag(prevUpdateFlag => !prevUpdateFlag);

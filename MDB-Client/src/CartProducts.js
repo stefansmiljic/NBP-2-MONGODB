@@ -34,7 +34,6 @@ export default function CartProducts({handleRefresh, deleteFlag}) {
         )};
       }, [deleteFlag, username]);
 
-      //console.log("Iz Cart products: " + typeof(username));
       
 
     return (
