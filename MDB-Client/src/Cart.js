@@ -37,6 +37,7 @@ function Cart({updateFlag, setUpdateFlag}) {
             getKorpa().then((data) => {
                 setKorpa(data);
                 setKorpaProizvodi(data.proizvodiIds);
+                localStorage.setItem("usernameForPay", username);
             });
         }
       }, [updateFlag, username]);
@@ -68,7 +69,10 @@ function Cart({updateFlag, setUpdateFlag}) {
             </div>
             <div className='cartContent' style={{display: "none"}}>
                 <CartProducts handleRefresh={handleRefresh} deleteFlag={updateFlag}/>
-                <label>За плаћање укупно: {korpa.ukupanRacun} дин.</label>
+                <div className='korpaCheckout'>
+                    <label>За плаћање укупно: {korpa.ukupanRacun} дин.</label>
+                    <a href='http://localhost:3000/payment'><ion-icon name="cart-outline"></ion-icon><label>Плаћање</label></a>
+                </div>
             </div>
         </div>
     );

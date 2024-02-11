@@ -30,7 +30,7 @@ public class ProizvodiService
         {
             proizvodi = await _proizvodiCollection.Find(x => x.TipProizvoda == (TipProizvoda)type).Skip((page-1)*pageSize).Limit(pageSize).ToListAsync();
         }
-        return proizvodi;
+        return proizvodi.OrderByDescending(p => p.BrojPosecenosti).ToList();
     }
 
     public async Task<int> GetNumberOfProducts(int type)

@@ -12,6 +12,19 @@
   left: calc(50% - 15rem);
 }
 
+.deleteAccountModal {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  background-color: white;
+  padding: 1rem;
+  text-align: center;
+  width: 30rem;
+  z-index: 10;
+  position: fixed;
+  top: 40vh;
+  left: calc(50% - 15rem);;
+}
+
 .backdrop {
   position: fixed;
   z-index: 1;
@@ -350,4 +363,83 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+input[type='file']::file-selector-button {
+  background-color: white;
+  border: none;
+  height: 30px;
+  border-radius: 10px;
+  margin-top: 2px;
+  margin-left: 40px;
+  cursor: pointer;
+}
+
+input[type='file']::file-selector-button:hover {
+  background-color: #37af33;
+  color: white;
+  transition: .2s;
+}
+
+#myFileInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #37af33;
+  color: white;
+}
+
+#myFileInput:hover {
+  background-color: #20641d;
+  transition: .2s;
+}
+
+#myFileInput #file-upload-button {
+  background-color: #07182e;
+}
+
+.deleteAccountModal2 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteAccountDiv {
+  transition: opacity 3s ease-in;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.deleteAccountDiv.active {
+  opacity: 1;
+  height: auto;
+  background-color: transparent;
+}
+
+.deleteAccountDiv input[type='password'] {
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid #37af33;
+  padding-left: 5px;
+}
+
+.deleteAccountDiv input[type='password']:focus {
+  outline: none;
+}
+
+.deleteAccountBtn2 {
+  background-color: rgb(223, 52, 22);
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.deleteAccountBtn2:hover {
+  background-color: rgb(151, 35, 15);
+  transition: .2s;
 }

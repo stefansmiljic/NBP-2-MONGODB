@@ -103,3 +103,41 @@
     color: white;
     transition: 0.25s;
   }
+
+  .korpaCheckout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .korpaCheckout a {
+    text-decoration: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 15px;
+    color: #1b1b1b; 
+    font-size: 16px;
+  }
+
+  .korpaCheckout a ion-icon {
+    font-size: 19px;
+    margin-right: 5px;
+  }
+  
+  .korpaCheckout a label {
+    cursor: pointer;
+  }
+
+  .korpaCheckout a:hover {
+    color: white;
+    transition: .2s;
+    background-color: #44e43e;
+    box-shadow:  5px 5px 20px #44e43ebd,
+             -5px -5px 20px #44e43eb0;
+  }

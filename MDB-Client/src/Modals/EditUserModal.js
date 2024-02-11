@@ -10,6 +10,8 @@ function EditUserModal(props) {
     const [confirmLozinka, setConfirmLozinka] = useState("");
     const [lozinka, setLozinka] = useState("");
     const [email, setEmail] = useState("");
+    const [user, setUser] = useState([]);
+    var username = sessionStorage.getItem("username");
 
     var niz = JSON.parse(sessionStorage.getItem("poseceniProizvodi"));
 
@@ -42,6 +44,26 @@ function EditUserModal(props) {
 
       const uncorrectConfirmPassword = (text) => toast(text);
       const fillAllFields = () => toast("Нисте попунили сва поља!");
+      
+      const getUser = async (username) => {
+        const user = await fetch(
+          "http://localhost:5099/api/Auth/GetUserByUsername?username=" + username
+        );
+      
+        if (!user.ok) {
+          return [];
+        }
+        
+        return user.json();
+      }
+
+      useEffect(() => {
+        if(username != null) {
+          getUser(username).then((data) => {
+            setUser(data);
+          })
+        }
+      }, [username]);
 
       const handleUpdate = () => {
         if(ime != sessionStorage.getItem("ime") && prezime != sessionStorage.getItem("prezime") && confirmLozinka != "" && email != sessionStorage.getItem("email")) {
@@ -52,7 +74,8 @@ function EditUserModal(props) {
                 password: lozinka,
                 email: email != "" ? email : sessionStorage.getItem("email"),
                 isAdmin: sessionStorage.getItem("isAdmin") == "false" ? false : true,
-                najskorijePoseceniProizvodi: JSON.parse(sessionStorage.getItem("poseceniProizvodi"))
+                najskorijePoseceniProizvodi: JSON.parse(sessionStorage.getItem("poseceniProizvodi")),
+                slika: user.slika
             };
         
             $.ajax({

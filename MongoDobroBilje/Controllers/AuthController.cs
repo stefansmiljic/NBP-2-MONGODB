@@ -69,13 +69,17 @@ public class AuthController : ControllerBase
     }
 
     [HttpDelete("DeleteAccount")]
-    public async Task<IActionResult> DeleteAccount(string username)
+    public async Task<IActionResult> DeleteAccount(string username, string password)
     {
         var korisnik = await _authService.GetKorisnikAsync(username);
 
         if(korisnik is null)
         {
             return NotFound();
+        }
+        if(!Argon2.Verify(korisnik.Password, password))
+        {
+            return BadRequest("Унели сте нетачну лозинку!");
         }
 
         await _authService.RemoveTokenAsync(username);

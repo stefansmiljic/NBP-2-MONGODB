@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Admin from './Admin'
+import Payment from './Payment'
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 const router = createBrowserRouter([
   { path: '/', element: <App></App> },
-  { path: '/admin', element: <Admin></Admin> }
+  { path: '/admin', element: <Admin></Admin> },
+  { path: '/payment', element: <Payment></Payment> }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

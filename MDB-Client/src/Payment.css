@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap');
+
+.paymentMain {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./assets/payment-background.png');
+}
+
+.payOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    background: #0c140d;
+    box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01),
+      0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09),
+      0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    position: relative;
+    border-radius: 25px;
+  }
+  .form .label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .form .label:has(input:focus) .title {
+    top: 0;
+    left: 0;
+    color: #16a81d;
+  }
+  .form .label .title {
+    padding: 0 10px;
+    transition: all 300ms;
+    font-size: 12px;
+    color: #8b8e98;
+    font-weight: 600;
+    width: -moz-fit-content;
+    width: fit-content;
+    top: 14px;
+    position: relative;
+    left: 15px;
+    background: #0c140d;
+  }
+  .form .input-field {
+    width: auto;
+    height: 50px;
+    text-indent: 15px;
+    border-radius: 15px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #21262e;
+    transition: all 0.3s;
+    caret-color: #16a81d;
+    color: #aeaeae;
+  }
+  
+  .form .input-field:hover {
+    border-color: #15801a;
+  }
+  
+  .form .input-field:focus {
+    border-color: #16a81d;
+  }
+  .form .split {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+  }
+  .form .split label {
+    width: 130px;
+  }
+  .form .checkout-btn {
+    margin-top: 20px;
+    padding: 20px 0;
+    border-radius: 25px;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    border: none;
+    justify-content: center;
+    fill: #fff;
+    color: #fff;
+    border: 2px solid transparent;
+    background: #16a81d;
+    transition: all 200ms;
+    height: 67px;
+  }
+  .form .checkout-btn:active {
+    scale: 0.95;
+  }
+  
+  .form .checkout-btn:hover {
+    color: #16a81d;
+    border: 2px solid #16a81d;
+    background: transparent;
+  }
+  
+  .paypal {
+    background-color: #0c140d;
+    width: 320px;
+    padding: 20px;
+    box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01),
+      0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09),
+      0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    border-radius: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .paypal ion-icon:hover  {
+    color: rgb(238, 238, 238);
+    transition: .2s;
+  }
+
+  .paypal label:hover  {
+    color: rgb(238, 238, 238);
+    transition: .2s;
+  }
+
+  .paypal ion-icon {
+    color: rgb(97, 198, 245);
+    cursor: pointer;
+  }
+
+  .paypal label {
+    color: rgb(97, 198, 245);
+    font-weight: bold;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+    font-stretch: wider;
+    cursor: pointer;
+  }
+
+  .razdvajanje {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(156, 156, 156);
+    margin-top: 15px;
+  }
+
+  .payOptions h1 {
+    color: #16a81d;
+    font-size: 40px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-weight: 300;
+  }
+
+  .rezimeKorpa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0c140d;
+    margin-left: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    align-self: baseline;
+    margin-top: 260px;
+    box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01),
+      0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09),
+      0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .rezimeKorpa h1 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: rgb(190, 190, 190);
+    font-size: 30px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-weight: 300;
+  }
+
+  .rezimeKorpaProizvod {
+    display: flex;
+    color: rgb(165, 165, 165);
+    justify-content: space-between;
+    width: 300px;
+    background-color: #202020;
+    height: 40px;
+    align-items: center;
+    padding: 5px;
+    border-radius: 15px;
+    margin-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
